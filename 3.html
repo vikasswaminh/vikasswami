@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Networkers Home – 20 Days • 20 Technologies Internship Challenge</title>
+<meta name="description" content="Networkers Home 20 Days • 20 Technologies Internship Challenge — a professional internship with real datacenter labs, firewalls, automation, and monitoring.">
+
+<style>
+/* ====== SaaS clean system ====== */
+:root{
+  --bg:#fff; --ink:#0b1020; --muted:#5b6475; --line:#e9ecf2;
+  --soft:#f8fafc; --brand:#2b6cff; --radius-lg:16px; --shadow:0 8px 24px rgba(16,24,40,0.06);
+  --container:1120px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;font:16px/1.55 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;color:var(--ink);background:var(--bg)}
+.container{max-width:var(--container);margin:0 auto;padding:0 20px}
+h1,h2,h3{margin:0;color:var(--ink)}
+h2{font-size:clamp(26px,3.6vw,38px);font-weight:800;letter-spacing:-.2px}
+a{color:var(--brand);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* Header */
+header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.85);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.hrow{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800}
+.brand-dot{width:12px;height:12px;border-radius:999px;background:radial-gradient(circle at 40% 40%,#69f,#2b6cff 70%)}
+.nav a{color:#2d3445;font-weight:600;padding:10px 12px;border-radius:8px}
+.nav a:hover{background:var(--soft)}
+
+/* Hero */
+.hero{background:linear-gradient(180deg,#fff 0%,#fbfcfe 100%);border-bottom:1px solid var(--line)}
+.hero-wrap{padding:60px 0 36px}
+h1{font-size:clamp(30px,4.5vw,48px);line-height:1.15;font-weight:900;letter-spacing:-.3px;margin:0 0 12px}
+.sub{color:var(--muted);max-width:70ch;margin:12px 0 28px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn{appearance:none;border:1px solid #dfe5f0;background:#fff;padding:10px 16px;border-radius:10px;font-weight:700;cursor:pointer;box-shadow:var(--shadow)}
+.btn.primary{background:var(--brand);color:#fff;border:none}
+.btn:hover{transform:translateY(-1px)}
+.controls{margin:24px 0 0;display:grid;gap:10px;grid-template-columns:1fr 220px 160px}
+@media(max-width:900px){.controls{grid-template-columns:1fr}}
+.input,.select{background:#fff;border:1px solid #dfe5f0;border-radius:10px;padding:12px 14px;outline:none}
+.input::placeholder{color:#9aa3b2}
+
+/* Grid */
+.grid{padding:40px 0;display:grid;gap:18px;grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:1040px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:680px){.grid{grid-template-columns:1fr}}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:22px;box-shadow:var(--shadow);transition:transform .15s ease,box-shadow .15s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(16,24,40,0.08)}
+.kicker{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.badge{padding:6px 10px;border-radius:999px;background:var(--soft);font-size:12px;font-weight:700;color:#2d3445}
+.day{margin-left:auto;font-size:12px;font-weight:800;background:#eef7f5;padding:6px 10px;border-radius:999px}
+.title{margin:0 0 6px;font-weight:800}
+.objective{margin:0;color:var(--muted)}
+
+/* Benefits */
+.benefits{background:var(--soft);border-top:1px solid var(--line);padding:80px 0}
+.bgrid{display:grid;gap:36px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+.bcard{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:28px;box-shadow:var(--shadow)}
+.bcard h3{margin:0 0 10px;font-weight:800;font-size:20px}
+.bcard ul{margin:0;padding-left:18px;color:var(--muted);line-height:1.7}
+
+/* CTA */
+.cta{padding:80px 0;background:linear-gradient(135deg,#2b6cff,#7b93ff);color:#fff;text-align:center}
+.cta h2{color:#fff;margin-bottom:16px}
+.cta p{color:#e3e9ff;margin:0 0 32px}
+.cta .btn{background:#fff;color:#0b1020;border:none;font-weight:800;box-shadow:0 8px 28px rgba(0,0,0,.1)}
+
+/* Footer */
+footer{border-top:1px solid var(--line);padding:18px 0 40px;text-align:center;color:#6a7282}
+
+/* Print */
+@media print{header,.hero-actions,.controls,.cta{display:none!important}.grid{grid-template-columns:1fr 1fr;gap:10px}.card{box-shadow:none}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container hrow">
+    <div class="brand"><span class="brand-dot"></span>Networkers Home</div>
+    <nav class="nav">
+      <a href="#">Program</a>
+      <a href="#">Schedule</a>
+      <a href="#" onclick="window.print()">Export PDF</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container hero-wrap">
+    <h1>20 Days • 20 Technologies Internship Challenge</h1>
+    <p class="sub">
+      Hands-on immersion into virtualization, firewalls, VPNs, routing, monitoring, automation, and HA — 
+      designed around real global infrastructure pods located in Paris.
+    </p>
+
+    <div class="hero-actions">
+      <button class="btn primary" onclick="window.print()">Print / Save PDF</button>
+      <button class="btn" onclick="resetFilters()">Reset Filters</button>
+    </div>
+
+    <div class="controls">
+      <input class="input" id="q" placeholder="Search technology or keyword…" oninput="applyFilters()">
+      <select class="select" id="theme" onchange="applyFilters()">
+        <option value="">Theme (all)</option>
+        <option>Virtualization</option><option>Linux</option><option>Firewall</option>
+        <option>VPN</option><option>Routing</option><option>Monitoring</option>
+        <option>Automation</option><option>Containers</option><option>Cluster/HA</option>
+        <option>Backup/DR</option><option>Integration</option>
+      </select>
+      <select class="select" id="jump" onchange="applyFilters()">
+        <option value="">Jump to Day</option>
+        <script>
+          for(let i=1;i<=20;i++)document.write(`<option>${i}</option>`);
+        </script>
+      </select>
+    </div>
+  </div>
+</section>
+
+<main class="container">
+  <section id="grid" class="grid"></section>
+</main>
+
+<!-- BENEFITS -->
+<section class="benefits">
+  <div class="container">
+    <h2 style="text-align:center;margin-bottom:18px;">Benefits of the 20-Day • 20-Technologies Internship</h2>
+    <p style="max-width:70ch;margin:0 auto 48px;text-align:center;color:var(--muted)">
+      A complete immersion in enterprise-level operations — from datacenter virtualization to SOC monitoring — 
+      equipping students to handle live environments confidently.
+    </p>
+
+    <div class="bgrid">
+      <div class="bcard">
+        <h3>Practical Exposure to Cutting-Edge Tech</h3>
+        <ul>
+          <li><strong>Virtualization:</strong> VMware ESXi & Proxmox</li>
+          <li><strong>Firewalls:</strong> pfSense and FortiGate</li>
+          <li><strong>Routing:</strong> Cisco IOS, MikroTik OSPF</li>
+          <li><strong>VPNs:</strong> WireGuard, OpenVPN, Tailscale</li>
+          <li><strong>Monitoring:</strong> Zabbix, Grafana, Prometheus, Suricata</li>
+          <li><strong>Automation:</strong> Ansible, Docker</li>
+          <li><strong>HA / Backup:</strong> Proxmox Cluster + DR</li>
+        </ul>
+      </div>
+      <div class="bcard">
+        <h3>Enterprise-Grade Learning Outcomes</h3>
+        <ul>
+          <li>Design and deploy multi-site network topologies.</li>
+          <li>Build and manage secure firewall / routing policies.</li>
+          <li>Perform live monitoring and incident analysis in NOC / SOC style.</li>
+          <li>Automate configurations using modern IaC tools.</li>
+          <li>Manage VM migrations and snapshots across hypervisors.</li>
+          <li>Implement backup and high-availability strategies.</li>
+        </ul>
+      </div>
+      <div class="bcard">
+        <h3>Tool Access & Infrastructure</h3>
+        <ul>
+          <li>Controlled access to licensed or trial enterprise software.</li>
+          <li>Centralized logging and telemetry like real NOC/SOC suites.</li>
+          <li>Private lab pods hosted in <strong>Paris Datacenter</strong>.</li>
+          <li>Secure RDP/SSH/VPN access via Tailscale mesh.</li>
+        </ul>
+      </div>
+      <div class="bcard">
+        <h3>Remote Management & Collaboration</h3>
+        <ul>
+          <li>Pods connected through a central management fabric.</li>
+          <li>Simulated multinational NOC/SOC workflow environment.</li>
+          <li>Mentor dashboards for uptime and performance monitoring.</li>
+          <li>Live supervision and ticket escalation channels.</li>
+        </ul>
+      </div>
+      <div class="bcard">
+        <h3>Career Advantage</h3>
+        <ul>
+          <li>Hands-on portfolio in 20 enterprise technologies.</li>
+          <li>Industry-ready skills for NOC, SOC, DevOps & Cloud roles.</li>
+          <li>Confidence handling global hybrid infrastructure.</li>
+          <li>Mentor-verified certification on completion.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="container">
+    <h2>Ready to Begin?</h2>
+    <p>Join the next batch of the 20 Days • 20 Technologies Internship Challenge.</p>
+    <a href="#" class="btn">Apply Now</a>
+  </div>
+</section>
+
+<footer>
+  Networkers Home • © 2025 • All Rights Reserved
+</footer>
+
+<script>
+const DAYS=[
+{day:1,theme:"Virtualization",focus:"VMware ESXi & Windows VM",objective:"Install ESXi, create a Windows VM, and enable RDP access."},
+{day:2,theme:"Linux",focus:"Ubuntu VM & SSH Remote",objective:"Deploy Ubuntu VM, enable SSH, and verify India ↔ Paris remote access."},
+{day:3,theme:"Firewall",focus:"pfSense Firewall – Install",objective:"Install pfSense firewall VM and verify network interfaces."},
+{day:4,theme:"Firewall",focus:"pfSense Firewall – Configure",objective:"Configure LAN/WAN, NAT, and firewall rules for controlled access."},
+{day:5,theme:"VPN",focus:"WireGuard VPN",objective:"Build a secure tunnel between India and Paris environments."},
+{day:6,theme:"VPN",focus:"OpenVPN Site-to-Site",objective:"Set up OpenVPN S2S and compare throughput vs WireGuard."},
+{day:7,theme:"VPN",focus:"Tailscale Mesh VPN",objective:"Create a zero-config mesh network with subnet routing for VMs."},
+{day:8,theme:"Routing",focus:"DNS & DHCP Server",objective:"Centralize IP allocation and name resolution for VLANs."},
+{day:9,theme:"Virtualization",focus:"Migrate to Proxmox",objective:"Move workloads from ESXi to Proxmox and validate networking."},
+{day:10,theme:"Routing",focus:"MikroTik RouterOS",objective:"Configure VLANs, NAT, and bandwidth limits on RouterOS."},
+{day:11,theme:"Routing",focus:"Dynamic Routing (OSPF)",objective:"Automate routing between Cisco and MikroTik routers."},
+{day:12,theme:"Firewall",focus:"FortiGate Firewall (Install + Configure)",objective:"Deploy and configure FortiGate for real traffic inspection and policy enforcement."},
+{day:13,theme:"Monitoring",focus:"IDS/IPS (Suricata / Zeek)",objective:"Monitor and detect network threats in mirrored traffic."},
+{day:14,theme:"Monitoring",focus:"Zabbix / Grafana / Prometheus",objective:"Implement monitoring and alerting across infra components."},
+{day:15,theme:"Automation",focus:"Ansible Automation",objective:"Automate VM and user configuration with playbooks."},
+{day:16,theme:"Containers",focus:"Docker Networking",objective:"Deploy a web app with reverse proxy and container networking."},
+{day:17,theme:"Cluster/HA",focus:"Proxmox Cluster & HA",objective:"Build a two-node cluster and perform live VM migration."},
+{day:18,theme:"Backup/DR",focus:"Backup & Restore",objective:"Create and test a full backup and recovery plan."},
+{day:19,theme:"Integration",focus:"Advanced Routing & VPN Integration",objective:"Combine VPN + Routing + Firewall for unified traffic control."},
+{day:20,theme:"Integration",focus:"Final Integration Project",objective:"Present complete infra: routers, VPNs, monitoring, and automation."}
+];
+
+const grid=document.getElementById('grid');
+function render(list=DAYS){
+  grid.innerHTML=list.map(d=>`
+  <article class="card" data-day="${d.day}" data-theme="${d.theme}">
+    <div class="kicker"><span class="badge">${d.theme}</span><span class="day">DAY ${d.day}</span></div>
+    <h3 class="title">${d.focus}</h3>
+    <p class="objective">${d.objective}</p>
+  </article>`).join('');
+  const j=document.getElementById('jump').value;
+  if(j){const el=grid.querySelector('[data-day="'+j+'"]');if(el)el.scrollIntoView({behavior:'smooth',block:'center'});}
+}
+render();
+
+function applyFilters(){
+  const q=(document.getElementById('q').value||"").toLowerCase();
+  const t=(document.getElementById('theme').value||"").toLowerCase();
+  const j=(document.getElementById('jump').value||"").trim();
+  const out=DAYS.filter(d=>{
+    const hay=`${d.theme} ${d.focus} ${d.objective}`.toLowerCase();
+    const okText=!q||hay.includes(q);
+    const okTheme=!t||d.theme.toLowerCase()===t;
+    const okDay=!j||String(d.day)===j;
+    return okText&&okTheme&&okDay;
+  });
+  render(out);
+}
+function resetFilters(){
+  document.getElementById('q').value="";
+  document.getElementById('theme').value="";
+  document.getElementById('
+
+  'q').value="";
+  document.getElementById('theme').value="";
+  document.getElementById('jump').value="";
+  render(DAYS);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
