@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Networkers Home — IT Consulting Business Partner Program</title>
+<meta name="description" content="Become a Networkers Home IT Consulting Business Partner. Sell routers, Wi-Fi, cloud controllers, managed networks, and financed deployments across India. Earn ₹1–10 Lakhs/month.">
+<style>
+/* ====== Large SaaS Clean System ====== */
+:root{
+  --bg:#ffffff; --ink:#0b1020; --muted:#5b6475; --line:#e9ecf2; --soft:#f7f9fc;
+  --brand:#2b6cff; --brand-ink:#0b1c4a; --accent:#16b397;
+  --radius-lg:16px; --radius-md:12px; --radius-sm:8px;
+  --shadow-sm:0 6px 20px rgba(16,24,40,.06); --shadow-md:0 12px 34px rgba(16,24,40,.08);
+  --container:1120px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font:16px/1.6 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial}
+.container{max-width:var(--container);margin:0 auto;padding:0 20px}
+h1,h2,h3{margin:0}
+h2{font-size:clamp(26px,3.6vw,38px);font-weight:800;letter-spacing:-.2px}
+a{color:var(--brand);text-decoration:none} a:hover{text-decoration:underline}
+
+/* Header */
+.hdr{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.85);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.hrow{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.2px}
+.brand-dot{width:12px;height:12px;border-radius:999px;background:radial-gradient(circle at 40% 40%,#69f,#2b6cff 70%);box-shadow:0 0 0 4px rgba(43,108,255,.12)}
+.nav a{color:#2d3445;font-weight:600;padding:10px 12px;border-radius:8px}
+.nav a:hover{background:var(--soft)}
+
+/* Hero */
+.hero{background:linear-gradient(180deg,#fff 0%,#fbfcfe 100%);border-bottom:1px solid var(--line)}
+.hero-wrap{padding:64px 0 36px}
+.eyebrow{display:inline-block;font-weight:800;color:var(--brand-ink);background:#eaf1ff;border:1px solid #dbe6ff;padding:6px 10px;border-radius:999px;font-size:12px;margin-bottom:14px}
+h1{font-size:clamp(30px,4.5vw,48px);line-height:1.14;font-weight:900;letter-spacing:-.3px;margin:0 0 10px}
+.sub{color:var(--muted);max-width:70ch;margin:10px 0 22px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn{appearance:none;border:1px solid #dfe5f0;background:#fff;color:#0b1020;padding:10px 16px;border-radius:10px;font-weight:800;cursor:pointer;box-shadow:var(--shadow-sm)}
+.btn.primary{background:var(--brand);color:#fff;border-color:transparent;box-shadow:0 8px 28px rgba(43,108,255,.25)}
+.btn:hover{transform:translateY(-1px)}
+
+/* Sections */
+.section{padding:56px 0}
+.section.soft{background:var(--soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.lead{color:var(--muted);max-width:74ch;margin:10px 0 28px}
+
+/* Grids & Cards */
+.grid-3{display:grid;gap:18px;grid-template-columns:repeat(3,minmax(0,1fr))}
+.grid-4{display:grid;gap:18px;grid-template-columns:repeat(4,minmax(0,1fr))}
+@media(max-width:1040px){.grid-3,.grid-4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:680px){.grid-3,.grid-4{grid-template-columns:1fr}}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:22px;box-shadow:var(--shadow-sm);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease}
+.card:hover{transform:translateY(-2px);box-shadow:var(--shadow-md);border-color:#d7dfee}
+.card h3{margin:0 0 8px;font-weight:800;font-size:18px}
+.card p{margin:0;color:var(--muted)}
+.badge{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border:1px solid #dfe5f0;background:#fff;border-radius:999px;color:#2d3445;font-weight:800;font-size:12px}
+
+/* List style */
+ul.clean{margin:0;padding-left:18px;color:var(--muted);line-height:1.8}
+
+/* Table */
+.table{width:100%;border-collapse:separate;border-spacing:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff;box-shadow:var(--shadow-sm)}
+.table th,.table td{padding:12px 14px;border-bottom:1px solid var(--line);text-align:left}
+.table th{background:#f3f6fc;font-weight:800}
+.table tr:last-child td{border-bottom:none}
+
+/* Steps */
+.steps{display:grid;gap:18px;grid-template-columns:repeat(5,minmax(0,1fr))}
+@media(max-width:1040px){.steps{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:680px){.steps{grid-template-columns:repeat(1,minmax(0,1fr))}}
+.step{background:#fff;border:1px solid var(--line);border-radius:var(--radius-md);padding:18px;box-shadow:var(--shadow-sm)}
+.step .num{display:inline-block;font-weight:900;background:#eef7f5;border:1px solid #d9eee9;color:#0b3b33;padding:6px 10px;border-radius:999px;font-size:12px;margin-bottom:8px}
+
+/* CTA */
+.cta{padding:72px 0;background:linear-gradient(135deg,#2b6cff,#7b93ff);color:#fff;text-align:center}
+.cta h2{color:#fff;margin-bottom:10px}
+.cta p{color:#e3e9ff;margin:0 0 24px}
+.cta .btn{background:#fff;color:#0b1020;border:none}
+
+/* Footer */
+footer{border-top:1px solid var(--line);padding:18px 0 36px;color:#6a7282;text-align:center}
+
+/* Print */
+@media print{.hdr,.hero-actions,.cta{display:none!important}.card{box-shadow:none}}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="hdr">
+  <div class="container hrow">
+    <div class="brand"><span class="brand-dot"></span>Networkers Home</div>
+    <nav class="nav">
+      <a href="#opportunity">Opportunity</a>
+      <a href="#models">Revenue Models</a>
+      <a href="#financing">Financing</a>
+      <a href="#apply" onclick="window.print()">Export PDF</a>
+    </nav>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container hero-wrap">
+    <span class="eyebrow">IT Consulting Business Partner Program • 2025</span>
+    <h1>Build India’s Smart Internet Infrastructure — With NH</h1>
+    <p class="sub">
+      Join Networkers Home’s new IT Division with <strong>40+ technology partnerships</strong> to deliver
+      routers, Wi-Fi, cloud controllers, managed security, and research-based Indian & global products.
+      Use our <strong>financing</strong> and <strong>NOC/SOC</strong> backbone to launch in your city and
+      target PGs, hostels, cafés, schools, kirana stores, and SMEs — and scale to <strong>₹1–10 Lakhs/month</strong>.
+    </p>
+    <div class="hero-actions">
+      <a class="btn primary" href="#apply">Become a Partner</a>
+      <a class="btn" href="#why">Why this wins</a>
+    </div>
+  </div>
+</section>
+
+<!-- Why NH Partners -->
+<section id="why" class="section">
+  <div class="container">
+    <h2>Why Partners Win with Networkers Home</h2>
+    <p class="lead">
+      We blend a proven brand in networking education with a modern distribution engine:
+      enterprise hardware supply, cloud-managed software, and project financing — all under one roof.
+    </p>
+
+    <div class="grid-3">
+      <article class="card">
+        <h3>40+ Vendor Partnerships</h3>
+        <p>Curated portfolio across routers, APs, firewalls, SD-WAN, and controllers — including NH’s own <strong>Namah OS</strong> line.</p>
+      </article>
+      <article class="card">
+        <h3>Cloud Controller + NOC/SOC</h3>
+        <p>Deploy and monitor hundreds of sites from a single pane. Alerts, analytics, and policy control — hosted by NH.</p>
+      </article>
+      <article class="card">
+        <h3>Financing & Leasing</h3>
+        <p>NH extends hardware credit lines so you can close deals without heavy upfront capital.</p>
+      </article>
+      <article class="card">
+        <h3>Recurring Revenue</h3>
+        <p>Earn monthly from service contracts: captive portal, bandwidth mgmt, SLA support, and monitoring.</p>
+      </article>
+      <article class="card">
+        <h3>Nationwide Demand</h3>
+        <p>PGs, hostels, cafés, schools, co-works, retail — everyone needs reliable Wi-Fi and managed networks.</p>
+      </article>
+      <article class="card">
+        <h3>NH Brand & Engineering</h3>
+        <p>18+ years of credibility, 800+ hiring partners, and a senior engineering team behind you.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Opportunity -->
+<section id="opportunity" class="section soft">
+  <div class="container">
+    <h2>The Opportunity — Build Local Internet Businesses</h2>
+    <p class="lead">
+      You become the go-to partner in your district: selling devices, deploying networks, and operating
+      them remotely via NH cloud. Start with hotspots and PG Wi-Fi; scale to campuses and SMEs.
+    </p>
+
+    <div class="grid-4">
+      <article class="card"><h3>PG / Hostel Wi-Fi</h3><p>Voucher or monthly plans; captive portal; per-user control.</p></article>
+      <article class="card"><h3>Retail Hotspots</h3><p>Tea/kirana shops sell 1-hour vouchers at ₹10; daily footfall turns into income.</p></article>
+      <article class="card"><h3>SMB & Co-work</h3><p>Managed routers, APs, firewalls, content filtering, reporting.</p></article>
+      <article class="card"><h3>Education</h3><p>Labs, hostel Wi-Fi, campus-wide management with policy tiers.</p></article>
+      <article class="card"><h3>Hotels & Cafés</h3><p>Guest Wi-Fi, marketing splash pages, analytics and upsell.</p></article>
+      <article class="card"><h3>Hardware Leasing</h3><p>Recurring income via rental plans with bundled support.</p></article>
+      <article class="card"><h3>Managed Security</h3><p>FortiGate/pfSense policies, IPS/IDS, VPN and audit bundles.</p></article>
+      <article class="card"><h3>Micronodes</h3><p>Small outdoor APs to cover streets/markets; remotely managed.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- Revenue Models -->
+<section id="models" class="section">
+  <div class="container">
+    <h2>Proven Revenue Models</h2>
+    <p class="lead">Mix and match to build stable monthly income. NH provides the tech stack, you drive local sales.</p>
+    <table class="table" aria-label="Revenue Models">
+      <thead>
+        <tr><th>Model</th><th>What You Sell</th><th>Pricing Examples</th><th>Recurring Streams</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>PG / Hostel Wi-Fi</td>
+          <td>Controller-managed APs, captive portal, bandwidth control</td>
+          <td>₹299–₹599 per user/mo • or ₹10/hour voucher</td>
+          <td>Monthly plans + top-ups</td>
+        </tr>
+        <tr>
+          <td>Retail Hotspots</td>
+          <td>Routers/APs + NH voucher stack + QR pay</td>
+          <td>₹10–₹30 per hour • daily passes ₹49–₹99</td>
+          <td>Voucher margin + device AMC</td>
+        </tr>
+        <tr>
+          <td>SMB Networks</td>
+          <td>Edge routers, firewalls, monitoring</td>
+          <td>₹3k–₹25k one-time + ₹2k–₹15k/mo</td>
+          <td>Managed service retainers</td>
+        </tr>
+        <tr>
+          <td>Hardware Leasing</td>
+          <td>Router/AP bundles on 12–24 mo term</td>
+          <td>₹1.5k–₹8k/mo per site</td>
+          <td>Lease + support</td>
+        </tr>
+        <tr>
+          <td>Managed Security</td>
+          <td>FortiGate/pfSense policies, VPN, IPS/IDS</td>
+          <td>₹10k–₹50k setup + ₹5k–₹25k/mo</td>
+          <td>Security subscription + SLA</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- Financing & Supply -->
+<section id="financing" class="section soft">
+  <div class="container">
+    <h2>Financing, Supply Chain & Cloud Control</h2>
+    <p class="lead">Close larger deals faster with NH’s capital and backbone. We remove the usual early-stage hurdles.</p>
+
+    <div class="grid-3">
+      <article class="card">
+        <span class="badge">Financing</span>
+        <h3>Credit Lines & Leasing</h3>
+        <p>NH finances hardware for qualified partners; you deploy now and recover via monthly client payments.</p>
+      </article>
+      <article class="card">
+        <span class="badge">Supply</span>
+        <h3>40+ Vendor Catalogue</h3>
+        <p>Routers, APs, gateways, firewalls — pre-vetted kits with Indian + global options and NH pricing.</p>
+      </article>
+      <article class="card">
+        <span class="badge">Cloud</span>
+        <h3>Controller + NOC/SOC</h3>
+        <p>Manage policies, firmware, and analytics from a single console. NH hosts the backbone; you scale.</p>
+      </article>
+    </div>
+
+    <div class="steps" style="margin-top:22px">
+      <div class="step"><div class="num">Step 1</div><strong>Onboard & Territory</strong><br>Lock your city/district and receive partner toolkit.</div>
+      <div class="step"><div class="num">Step 2</div><strong>Deal Desk</strong><br>Quote with NH-approved kits and financing options.</div>
+      <div class="step"><div class="num">Step 3</div><strong>Deploy</strong><br>Install gear; enroll sites into cloud controller.</div>
+      <div class="step"><div class="num">Step 4</div><strong>Operate</strong><br>Monitor via NOC/SOC; run vouchers, SLAs, reports.</div>
+      <div class="step"><div class="num">Step 5</div><strong>Scale</strong><br>Add hotspots, PGs, SMBs; upsell leases and security.</div>
+    </div>
+  </div>
+</section>
+
+<!-- Earnings Scenarios -->
+<section class="section">
+  <div class="container">
+    <h2>Earning Scenarios (Illustrative)</h2>
+    <p class="lead">Your numbers will vary by city size and mix of models. These ranges are realistic for focused execution.</p>
+    <table class="table" aria-label="Earning Scenarios">
+      <thead><tr><th>Scenario</th><th>Composition</th><th>Monthly Range</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Starter (PG + Retail)</td>
+          <td>3 PGs (100 users each) + 10 retail hotspots</td>
+          <td>₹1–2 Lakhs</td>
+        </tr>
+        <tr>
+          <td>Growth (Add SMB + Security)</td>
+          <td>+ 8 SMBs managed + 2 security retainers</td>
+          <td>₹3–5 Lakhs</td>
+        </tr>
+        <tr>
+          <td>Scale (District Leader)</td>
+          <td>10 PGs + 40 hotspots + 20 SMBs + 6 security retainers + leasing</td>
+          <td>₹6–10 Lakhs</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- Apply CTA -->
+<section id="apply" class="cta">
+  <div class="container">
+    <h2>Become a Networkers Home Partner</h2>
+    <p>Early partners can secure district-level exclusivity and access to financing. Start in your city now.</p>
+    <a href="#" class="btn">Apply for Partnership</a>
+  </div>
+</section>
+
+<footer>
+  Networkers Home • © 2025 • IT Consulting Division
+</footer>
+
+</body>
+</html>
