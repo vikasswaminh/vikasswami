@@ -3,193 +3,184 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Networkers Home – 20 Days • 20 Technologies Internship Challenge</title>
-<meta name="description" content="Networkers Home 20 Days • 20 Technologies Internship Challenge — modern 2025-style mentor/student page." />
+<title>Networkers Home — 20 Days • 20 Technologies</title>
+<meta name="description" content="Networkers Home — 20 Days • 20 Technologies Internship Challenge" />
 
 <style>
+  /* =========================
+     SaaS-clean design tokens
+     ========================= */
   :root{
-    --bg: #0b0d12;
-    --panel: #0f1320;
-    --card: #12182a;
-    --muted: #a7b0c0;
-    --text: #e9eef7;
-    --brand1: #6e9bff;
-    --brand2: #9e6bff;
-    --accent: #29e0a9;
-    --warn: #ffb86b;
-    --danger:#ff6b88;
-    --shadow: 0 10px 30px rgba(0,0,0,.35);
-    --radius-xl: 18px;
-    --radius-lg: 14px;
-    --radius-md: 10px;
+    --bg: #ffffff;
+    --ink: #0b1020;
+    --muted:#5b6475;
+    --line:#e9ecf2;
+    --soft:#f7f9fc;
+
+    --brand:#2b6cff;          /* primary */
+    --brand-ink:#0b1c4a;
+    --accent:#16b397;         /* subtle accent for badges */
+
+    --radius-lg: 16px;
+    --radius-md: 12px;
+    --radius-sm: 8px;
+
+    --shadow-sm: 0 4px 16px rgba(16,24,40,0.06);
+    --shadow-md: 0 10px 30px rgba(16,24,40,0.08);
+
+    --container: 1120px;
   }
-  /* Reset-ish */
-  * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; background: radial-gradient(1200px 800px at 100% 0%, rgba(110,155,255,.10), transparent 60%), radial-gradient(1200px 800px at 0% 100%, rgba(158,107,255,.10), transparent 60%), var(--bg); color: var(--text); font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; }
-  img { max-width: 100%; display: block; }
-  a { color: var(--brand1); text-decoration: none; }
-  a:hover { text-decoration: underline; }
+
+  /* Base */
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink)}
+  body{font:16px/1.55 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial}
+
+  a{color:var(--brand);text-decoration:none}
+  a:hover{text-decoration:underline}
+  img{max-width:100%;display:block}
+
+  .container{max-width:var(--container);margin:0 auto;padding:0 20px}
 
   /* Header */
-  header {
-    position: sticky; top: 0; z-index: 50;
-    backdrop-filter: saturate(140%) blur(8px);
-    background: linear-gradient(90deg, rgba(15,19,32,.85), rgba(18,24,42,.85));
-    border-bottom: 1px solid rgba(255,255,255,.06);
+  .hdr{
+    position:sticky; top:0; z-index:20;
+    background:rgba(255,255,255,.85);
+    backdrop-filter:saturate(140%) blur(8px);
+    border-bottom:1px solid var(--line);
   }
-  .wrap { max-width: 1160px; margin: 0 auto; padding: 18px 20px; }
-  .brand {
-    display: flex; align-items: center; gap: 12px; font-weight: 800; letter-spacing:.3px;
-    font-size: 18px; text-transform: uppercase;
+  .hdr-row{
+    display:flex; align-items:center; justify-content:space-between;
+    height:64px;
   }
-  .dot {
-    width: 12px; height: 12px; border-radius: 999px;
-    background: conic-gradient(from 210deg at 50% 50%, var(--brand1), var(--brand2), var(--brand1));
-    box-shadow: 0 0 0 3px rgba(110,155,255,.15), 0 0 18px rgba(158,107,255,.45);
+  .brand{
+    display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.2px;
   }
+  .brand-dot{
+    width:12px;height:12px;border-radius:999px;
+    background:radial-gradient(circle at 40% 40%, #69f, #2b6cff 70%);
+    box-shadow:0 0 0 4px rgba(43,108,255,.12);
+  }
+  .nav a{color:#2d3445; font-weight:600; padding:10px 12px; border-radius:8px}
+  .nav a:hover{background:var(--soft)}
 
   /* Hero */
-  .hero {
-    padding: 42px 20px 28px;
-    background:
-      radial-gradient(600px 600px at 20% -10%, rgba(41,224,169,.14), transparent 60%),
-      radial-gradient(800px 600px at 80% 110%, rgba(110,155,255,.15), transparent 60%);
-    border-bottom: 1px solid rgba(255,255,255,.06);
+  .hero{
+    background:linear-gradient(180deg, #ffffff 0%, #fbfcfe 100%);
+    border-bottom:1px solid var(--line);
   }
-  .hero h1 {
-    margin: 0 0 8px; font-size: clamp(28px, 3.8vw, 44px);
-    line-height: 1.15; font-weight: 900;
-    letter-spacing: .2px;
-    background: linear-gradient(90deg, #cfe0ff, #f2e6ff 60%, #cfe0ff);
-    -webkit-background-clip: text; background-clip: text; color: transparent;
+  .hero-wrap{padding:48px 0 24px}
+  .eyebrow{
+    display:inline-block; font-weight:700; letter-spacing:.3px; color:var(--brand-ink);
+    background:#eaf1ff; border:1px solid #dbe6ff; padding:6px 10px; border-radius:999px; font-size:12px;
+    margin-bottom:14px;
   }
-  .hero p { margin: 10px 0 18px; color: var(--muted); max-width: 70ch; }
-
-  .hero-actions{
-    display: flex; gap: 10px; flex-wrap: wrap;
+  h1{
+    margin:0; font-size:clamp(28px, 4.2vw, 42px); line-height:1.15; letter-spacing:-.2px;
   }
-  .btn {
-    display:inline-flex; align-items:center; gap:10px; padding:10px 14px; border-radius: 999px;
-    border: 1px solid rgba(255,255,255,.08);
-    background: linear-gradient(180deg, rgba(110,155,255,.18), rgba(158,107,255,.18));
-    color:#fff; box-shadow: var(--shadow);
-    font-weight: 700;
+  .sub{
+    margin:12px 0 24px; color:var(--muted); max-width:70ch;
   }
-  .btn.secondary{
-    background: linear-gradient(180deg, rgba(41,224,169,.14), rgba(41,224,169,.10));
-    border-color: rgba(41,224,169,.35);
-    color:#b9ffea;
+  .hero-actions{display:flex; gap:10px; flex-wrap:wrap}
+  .btn{
+    appearance:none; border:1px solid #dfe5f0; background:#fff; color:#0b1020;
+    padding:10px 14px; border-radius:10px; font-weight:700; cursor:pointer;
+    box-shadow:var(--shadow-sm);
   }
-  .btn:hover{ filter: brightness(1.08); }
+  .btn:hover{transform:translateY(-1px)}
+  .btn.primary{
+    background:var(--brand); color:#fff; border-color:transparent; box-shadow:0 6px 18px rgba(43,108,255,.25);
+  }
+  .btn.primary:hover{filter:brightness(1.03)}
 
   /* Controls */
-  .controls {
-    margin: 18px 0 8px; display: grid; gap: 10px; grid-template-columns: 1fr 200px 160px;
+  .controls{
+    margin:18px 0 0; display:grid; gap:10px; grid-template-columns: 1fr 220px 160px;
   }
-  @media (max-width: 820px){ .controls { grid-template-columns: 1fr; } }
-
-  .search, .select {
-    background: var(--panel);
-    border: 1px solid rgba(255,255,255,.06);
-    border-radius: var(--radius-lg);
-    padding: 12px 14px; color: var(--text);
-    outline: none;
-    box-shadow: inset 0 0 0 1px rgba(110,155,255,.18);
+  @media (max-width:900px){ .controls{ grid-template-columns:1fr } }
+  .input, .select{
+    background:#fff; border:1px solid #dfe5f0; border-radius:10px; padding:12px 14px; color:#0b1020;
+    outline:none; box-shadow:inset 0 1px 0 rgba(16,24,40,0.02);
   }
-  .search::placeholder{ color: #7f8aa1; }
+  .input::placeholder{color:#9aa3b2}
 
   /* Grid */
-  .grid {
-    padding: 22px 20px 60px;
-    display: grid; gap: 18px;
-    grid-template-columns: repeat(3, minmax(0,1fr));
+  .grid{
+    padding:28px 0 64px;
+    display:grid; gap:16px; grid-template-columns: repeat(3, minmax(0,1fr));
   }
-  @media (max-width: 1080px){ .grid{ grid-template-columns: repeat(2, minmax(0,1fr)); } }
-  @media (max-width: 680px){ .grid{ grid-template-columns: 1fr; } }
+  @media (max-width:1040px){ .grid{ grid-template-columns: repeat(2, minmax(0,1fr)); } }
+  @media (max-width:680px){ .grid{ grid-template-columns:1fr; } }
 
-  .card {
-    background: linear-gradient(180deg, rgba(18,24,42,.86), rgba(12,16,30,.86));
-    border: 1px solid rgba(255,255,255,.06);
-    border-radius: var(--radius-xl);
-    padding: 18px; box-shadow: var(--shadow);
-    position: relative; overflow: hidden;
-    transition: transform .2s ease, box-shadow .2s ease;
-    isolation: isolate;
+  .card{
+    background:#fff; border:1px solid var(--line); border-radius:var(--radius-lg);
+    padding:18px; box-shadow:var(--shadow-sm);
+    transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
   }
-  .card::after{
-    content:""; position:absolute; inset: -20% -20% auto auto;
-    width: 180px; height: 180px; border-radius: 50%;
-    background: radial-gradient(closest-side, rgba(110,155,255,.20), transparent 70%);
-    transform: translate(10%, -10%);
-    z-index: 0;
+  .card:hover{ transform:translateY(-2px); box-shadow:var(--shadow-md); border-color:#d7dfee; }
+  .kicker{display:flex; align-items:center; gap:10px; margin-bottom:8px}
+  .badge{
+    display:inline-flex; align-items:center; gap:6px; padding:6px 10px; border-radius:999px;
+    border:1px solid #dfe5f0; background:var(--soft); color:#2d3445; font-weight:700; font-size:12px;
   }
-  .card:hover{ transform: translateY(-3px); box-shadow: 0 20px 40px rgba(0,0,0,.45); }
-  .day-badge{
-    position: absolute; top: 12px; right: 12px;
-    background: linear-gradient(120deg, var(--brand1), var(--brand2));
-    color:#0b0d12; font-weight: 900; font-size: 12px;
-    padding: 6px 10px; border-radius: 999px; z-index: 1;
-    box-shadow: 0 0 0 3px rgba(158,107,255,.20);
+  .day{
+    margin-left:auto; font-weight:800; color:#14213a; font-size:12px;
+    background:#eef7f5; border:1px solid #d9eee9; padding:6px 10px; border-radius:999px;
   }
-  .title { margin: 0 0 6px; font-size: 18px; font-weight: 800; letter-spacing:.2px; }
-  .focus { color: #d8dffd; font-weight: 700; margin: 0 0 6px; }
-  .objective { color: var(--muted); margin: 0; }
+  .title{margin:0 0 6px; font-weight:800; letter-spacing:.2px}
+  .focus{margin:0 0 6px; color:#1a2440; font-weight:700}
+  .objective{margin:0; color:var(--muted)}
 
-  /* Footer / notes */
+  /* Footer */
   footer{
-    border-top: 1px solid rgba(255,255,255,.06);
-    color: #97a4bd; padding: 18px 20px 40px; text-align: center;
+    border-top:1px solid var(--line); padding:18px 0 36px; color:#6a7282; text-align:center; background:#fff;
   }
 
   /* Print */
-  @media print {
-    header, .hero-actions, .controls, .card::after { display:none!important; }
-    body { background: #fff; color: #000; }
-    .grid { grid-template-columns: 1fr 1fr; gap: 12px; padding: 0 0 0; }
-    .card { background: #fff; border: 1px solid #ccc; color:#000; box-shadow:none; }
-    .day-badge { background:#000; color:#fff; box-shadow:none; }
-    .focus { color:#111; }
-    footer { color:#333; }
+  @media print{
+    .hdr, .hero-actions, .controls{display:none!important}
+    body{color:#000}
+    .grid{grid-template-columns:1fr 1fr; gap:12px; padding:0}
+    .card{box-shadow:none}
   }
 </style>
 </head>
-
 <body>
+
   <!-- Header -->
-  <header>
-    <div class="wrap" style="display:flex; align-items:center; justify-content:space-between;">
-      <div class="brand"><span class="dot"></span> Networkers Home</div>
-      <nav style="display:flex; gap:14px; align-items:center;">
-        <a href="#" style="color:#cfe0ff;">Program</a>
-        <a href="#" style="color:#cfe0ff;">Schedule</a>
-        <a href="#" style="color:#cfe0ff;">Guide</a>
+  <header class="hdr">
+    <div class="container hdr-row">
+      <div class="brand">
+        <span class="brand-dot" aria-hidden="true"></span>
+        <span>Networkers Home</span>
+      </div>
+      <nav class="nav" aria-label="Primary">
+        <a href="#">Program</a>
+        <a href="#">Schedule</a>
+        <a href="#" onclick="window.print()">Export PDF</a>
       </nav>
     </div>
   </header>
 
   <!-- Hero -->
   <section class="hero">
-    <div class="wrap">
-      <h1>20 Days • 20 Technologies Internship Challenge</h1>
-      <p>
-        A hands-on journey across virtualization, routing, firewalls, VPNs, monitoring, automation,
-        and HA — designed for real traffic and real operations. Use this page to skim, filter,
-        and print your day plan.
+    <div class="container hero-wrap">
+      <span class="eyebrow">Internship Challenge</span>
+      <h1>20 Days • 20 Technologies</h1>
+      <p class="sub">
+        A crisp, real-world track across virtualization, Linux, firewalls, VPNs, routing, monitoring,
+        automation, containers, clustering, and integration. Browse, filter, and print.
       </p>
 
       <div class="hero-actions">
-        <button class="btn" onclick="window.print()">
-          🖨️ Print / Save PDF
-        </button>
-        <button class="btn secondary" onclick="resetFilters()">
-          ♻️ Reset Filters
-        </button>
+        <button class="btn primary" onclick="window.print()">Print / Save as PDF</button>
+        <button class="btn" onclick="resetFilters()">Reset Filters</button>
       </div>
 
       <div class="controls">
-        <input class="search" id="search" placeholder="Search (e.g., pfSense, VPN, Proxmox, OSPF, FortiGate)…" oninput="applyFilters()" />
-        <select class="select" id="phase" onchange="applyFilters()">
-          <option value="">Filter by theme (optional)</option>
+        <input class="input" id="q" placeholder="Search: pfSense, FortiGate, Proxmox, OSPF, VPN…" oninput="applyFilters()" />
+        <select class="select" id="theme" onchange="applyFilters()">
+          <option value="">Theme (all)</option>
           <option>Virtualization</option>
           <option>Linux</option>
           <option>Firewall</option>
@@ -202,7 +193,7 @@
           <option>Backup/DR</option>
           <option>Integration</option>
         </select>
-        <select class="select" id="day" onchange="applyFilters()">
+        <select class="select" id="jump" onchange="applyFilters()">
           <option value="">Jump to Day</option>
           <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
           <option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
@@ -213,22 +204,22 @@
     </div>
   </section>
 
-  <!-- Grid -->
-  <main class="grid wrap" id="grid">
-    <!-- Day cards will be injected by script -->
+  <!-- Cards -->
+  <main class="container" style="padding-top:12px;">
+    <section id="grid" class="grid" aria-live="polite"></section>
   </main>
 
   <footer>
-    Networkers Home • © 2025 • 20 Days • 20 Technologies Internship Challenge
+    Networkers Home • © 2025 • 20 Days • 20 Technologies
   </footer>
 
 <script>
-  // ---- Data (reflecting your latest edits) ----
+  // Data — final sequence (pfSense split over Day 3/4, no FreeRADIUS, FortiGate on Day 12)
   const DAYS = [
     {day:1,  theme:"Virtualization", focus:"VMware ESXi & Windows VM", objective:"Install ESXi, create a Windows VM, and enable RDP access."},
-    {day:2,  theme:"Linux",          focus:"Ubuntu VM & SSH Remote",   objective:"Deploy Ubuntu VM, enable SSH, and test India ↔ Paris remote access."},
-    {day:3,  theme:"Firewall",       focus:"pfSense Firewall Installation", objective:"Install pfSense firewall VM and verify network interfaces."},
-    {day:4,  theme:"Firewall",       focus:"pfSense Firewall Configuration", objective:"Configure LAN/WAN, NAT, and firewall rules for controlled access."},
+    {day:2,  theme:"Linux",          focus:"Ubuntu VM & SSH Remote",   objective:"Deploy Ubuntu VM, enable SSH, and verify India ↔ Paris remote access."},
+    {day:3,  theme:"Firewall",       focus:"pfSense Firewall — Install", objective:"Install pfSense firewall VM and verify network interfaces."},
+    {day:4,  theme:"Firewall",       focus:"pfSense Firewall — Configure", objective:"Configure LAN/WAN, NAT, and firewall rules for controlled access."},
     {day:5,  theme:"VPN",            focus:"WireGuard VPN",            objective:"Build a secure tunnel between India and Paris environments."},
     {day:6,  theme:"VPN",            focus:"OpenVPN Site-to-Site",     objective:"Set up OpenVPN S2S and compare throughput vs WireGuard."},
     {day:7,  theme:"VPN",            focus:"Tailscale Mesh VPN",       objective:"Create a zero-config mesh network with subnet routing for VMs."},
@@ -239,7 +230,7 @@
     {day:12, theme:"Firewall",       focus:"FortiGate Firewall (Install + Configure)", objective:"Deploy and configure FortiGate for real traffic inspection and policy enforcement."},
     {day:13, theme:"Monitoring",     focus:"IDS/IPS (Suricata / Zeek)",objective:"Monitor and detect network threats in mirrored traffic."},
     {day:14, theme:"Monitoring",     focus:"Zabbix / Grafana / Prometheus", objective:"Implement monitoring and alerting across infra components."},
-    {day:15, theme:"Automation",     focus:"Ansible Automation",       objective:"Automate VM/user configuration with playbooks."},
+    {day:15, theme:"Automation",     focus:"Ansible Automation",       objective:"Automate VM and user configuration with playbooks."},
     {day:16, theme:"Containers",     focus:"Docker Networking",        objective:"Deploy a web app with reverse proxy and container networking."},
     {day:17, theme:"Cluster/HA",     focus:"Proxmox Cluster & HA",     objective:"Build a two-node cluster and perform live VM migration."},
     {day:18, theme:"Backup/DR",      focus:"Backup & Restore",         objective:"Create and test a full backup and recovery plan."},
@@ -247,51 +238,50 @@
     {day:20, theme:"Integration",    focus:"Final Integration Project", objective:"Present complete infra: routers, VPNs, monitoring, and automation."},
   ];
 
-  // ---- Render cards ----
   const grid = document.getElementById('grid');
 
-  function cardHTML({day, theme, focus, objective}) {
+  function card(d){
     return `
-      <article class="card" data-day="${day}" data-theme="${theme}">
-        <span class="day-badge">DAY ${day}</span>
-        <h3 class="title">${theme}</h3>
-        <div class="focus">${focus}</div>
-        <p class="objective">${objective}</p>
+      <article class="card" data-day="${d.day}" data-theme="${d.theme}">
+        <div class="kicker">
+          <span class="badge">${d.theme}</span>
+          <span class="day">DAY ${d.day}</span>
+        </div>
+        <h3 class="title">${d.focus}</h3>
+        <p class="objective">${d.objective}</p>
       </article>
     `;
   }
 
-  function render(list = DAYS){
-    grid.innerHTML = list.map(cardHTML).join('');
-    // jump to day if selected
-    const sel = document.getElementById('day').value;
-    if(sel){
-      const el = grid.querySelector('[data-day="'+sel+'"]');
-      if(el) el.scrollIntoView({behavior:'smooth', block:'center'});
+  function render(list=DAYS){
+    grid.innerHTML = list.map(card).join('');
+    const v = document.getElementById('jump').value;
+    if(v){
+      const n = grid.querySelector(`[data-day="${v}"]`);
+      if(n) n.scrollIntoView({behavior:'smooth', block:'center'});
     }
   }
   render();
 
-  // ---- Filters ----
   function applyFilters(){
-    const q = (document.getElementById('search').value || "").toLowerCase().trim();
-    const phase = (document.getElementById('phase').value || "").toLowerCase().trim();
-    const daySel = (document.getElementById('day').value || "").trim();
+    const q = (document.getElementById('q').value || "").toLowerCase();
+    const theme = (document.getElementById('theme').value || "").toLowerCase();
+    const jump = (document.getElementById('jump').value || "").trim();
 
-    let out = DAYS.filter(d => {
+    let out = DAYS.filter(d=>{
       const hay = `${d.theme} ${d.focus} ${d.objective}`.toLowerCase();
-      const matchesText = !q || hay.includes(q);
-      const matchesPhase = !phase || d.theme.toLowerCase() === phase;
-      const matchesDay = !daySel || String(d.day) === daySel;
-      return matchesText && matchesPhase && matchesDay;
+      const okText = !q || hay.includes(q);
+      const okTheme = !theme || d.theme.toLowerCase() === theme;
+      const okDay = !jump || String(d.day) === jump;
+      return okText && okTheme && okDay;
     });
     render(out);
   }
 
   function resetFilters(){
-    document.getElementById('search').value = "";
-    document.getElementById('phase').value = "";
-    document.getElementById('day').value = "";
+    document.getElementById('q').value = "";
+    document.getElementById('theme').value = "";
+    document.getElementById('jump').value = "";
     render(DAYS);
     window.scrollTo({top:0, behavior:'smooth'});
   }
