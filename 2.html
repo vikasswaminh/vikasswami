@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Meta -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Firewall OS Lineages — Modern Overview</title>
+  <meta name="description" content="Which base OS do vendor firewalls use? A clean, modern overview covering Linux, BSD, and hybrid stacks with examples and guidance." />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Lato:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- TailwindCSS (v2.2.19 as preferred) -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Manrope', 'ui-sans-serif', 'system-ui'],
+            body: ['Lato', 'ui-sans-serif', 'system-ui']
+          },
+          colors: {
+            ink: '#0B1220',
+            slateish: '#1C2431',
+            brand: {
+              50: '#EEF2FF',
+              100: '#E0E7FF',
+              200: '#C7D2FE',
+              300: '#A5B4FC',
+              400: '#818CF8',
+              500: '#6366F1',
+              600: '#4F46E5',
+              700: '#4338CA',
+              800: '#3730A3',
+              900: '#312E81'
+            }
+          },
+          boxShadow: {
+            soft: '0 10px 30px rgba(2, 6, 23, 0.10)'
+          },
+          backdropBlur: {
+            xs: '2px'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --ring: 0 0% 100%;
+    }
+    html, body { height: 100%; }
+    .glass { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); }
+    .gradient-hero {
+      background-image:
+        radial-gradient(1200px 500px at 20% -10%, rgba(99,102,241,0.25), transparent 60%),
+        radial-gradient(800px 400px at 90% 20%, rgba(236,72,153,0.22), transparent 60%),
+        linear-gradient(180deg, #0B1220 0%, #0F172A 100%);
+    }
+    .chip { border: 1px solid rgba(99,102,241,0.3); }
+  </style>
+</head>
+<body class="bg-ink text-white font-body antialiased">
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-ink/70 backdrop-blur-xs border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="h-8 w-8 rounded-lg bg-gradient-to-br from-brand-500 to-pink-500 shadow-soft"></div>
+        <span class="font-display font-extrabold tracking-tight text-lg">Firewall OS Atlas</span>
+      </div>
+      <nav class="hidden md:flex items-center gap-6 text-sm text-white/80">
+        <a href="#lineages" class="hover:text-white">Lineages</a>
+        <a href="#linux-vs-bsd" class="hover:text-white">Linux vs BSD</a>
+        <a href="#decision" class="hover:text-white">Decision Guide</a>
+        <a href="#faq" class="hover:text-white">FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="gradient-hero">
+    <div class="max-w-7xl mx-auto px-6 py-20 md:py-28">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <h1 class="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight">
+            Who’s Building on What?
+          </h1>
+          <p class="mt-5 text-white/80 text-lg">
+            A clean, vendor-neutral map of firewall operating system roots:
+            Linux, BSD, and the hybrids in between. Useful if you’re buying,
+            benchmarking, or building your own distro.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <span class="chip px-3 py-1 rounded-full text-sm text-brand-200">Linux</span>
+            <span class="chip px-3 py-1 rounded-full text-sm text-brand-200">FreeBSD</span>
+            <span class="chip px-3 py-1 rounded-full text-sm text-brand-200">Hybrid</span>
+            <span class="chip px-3 py-1 rounded-full text-sm text-brand-200">OEM / Embedded</span>
+          </div>
+        </div>
+        <div class="relative">
+          <div class="glass rounded-2xl p-6 shadow-soft">
+            <div class="grid grid-cols-3 gap-4">
+              <div class="rounded-xl bg-white/5 p-4">
+                <div class="text-3xl font-extrabold font-display">~70%</div>
+                <div class="text-xs text-white/70 mt-1">Commercial stacks built on Linux</div>
+              </div>
+              <div class="rounded-xl bg-white/5 p-4">
+                <div class="text-3xl font-extrabold font-display">~30%</div>
+                <div class="text-xs text-white/70 mt-1">BSD / Hybrid under the hood</div>
+              </div>
+              <div class="rounded-xl bg-white/5 p-4">
+                <div class="text-3xl font-extrabold font-display">Driver</div>
+                <div class="text-xs text-white/70 mt-1">Support vs Stability trade-off</div>
+              </div>
+            </div>
+            <div class="mt-4 text-xs text-white/60">Estimates based on market presence, public docs, and observed behavior.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lineages -->
+  <section id="lineages" class="relative">
+    <div class="max-w-7xl mx-auto px-6 py-16">
+      <h2 class="font-display text-2xl md:text-3xl font-extrabold">Vendor Lineages</h2>
+      <p class="mt-2 text-white/70">Quick read cards. Click into the buckets that matter for your stack decisions.</p>
+
+      <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Linux-based -->
+        <article class="glass rounded-2xl p-6 hover:bg-white/10 transition">
+          <div class="text-xs uppercase tracking-wider text-brand-300 font-semibold">Linux-based</div>
+          <h3 class="font-display text-xl font-bold mt-2">Fortinet FortiGate</h3>
+          <p class="text-white/70 text-sm mt-2">FortiOS on a modified Linux kernel; tight integration with NP/ASIC offload.</p>
+          <ul class="mt-4 space-y-1 text-sm text-white/80 list-disc list-inside">
+            <li>Pros: performance via hardware acceleration</li>
+            <li>Cons: closed internals, niche debugging</li>
+          </ul>
+        </article>
+
+        <article class="glass rounded-2xl p-6 hover:bg-white/10 transition">
+          <div class="text-xs uppercase tracking-wider text-brand-300 font-semibold">Linux-based</div>
+          <h3 class="font-display text-xl font-bold mt-2">Palo Alto Networks PAN-OS</h3>
+          <p class="text-white/70 text-sm mt-2">Custom Linux kernel with strong process isolation and App-ID engine.</p>
+          <ul class="mt-4 space-y-1 text-sm text-white/80 list-disc list-inside">
+            <li>Pros: mature NGFW features, ecosystem</li>
+            <li>Cons: proprietary hardware paths</li>
+          </ul>
+        </article>
+
+        <article class="glass rounded-2xl p-6 hover:bg-white/10 transition">
+          <div class="text-xs uppercase tracking-wider text-brand-300 font-semibold">Linux-based</div>
+          <h3 class="font-display text-xl font-bold mt-2">Check Point Gaia OS</h3>
+          <p class="text-white/70 text-sm mt-2">Hybridized Red Hat/CentOS lineage with hardened userland.</p>
+          <ul class="mt-4 space-y-1 text-sm text-white/80 list-disc list-inside">
+            <li>Pros: policy model depth, long support tails</li>
+            <li>Cons: upgrade workflows can be rigid</li>
+          </ul>
+        </article>
+
+        <article class="glass rounded-2xl p-6 hover:bg-white/10 transition">
+          <div class="text-xs uppercase tracking-wider text-brand-300 font-semibold">Linux-based</div>
+          <h3 class="font-display text-xl font-bold mt-2">Sophos XG / UTM</h3>
+          <p class="text-white/70 text-sm mt-2">SUSE Linux Enterprise base with proprietary security daemons.</p>
+          <ul class="mt-4 space-y-1 text-sm text-white/80 list-disc list-inside">
+            <li>Pros: admin UX, SMB-friendly bundles</li>
+            <li>Cons: kernel lag vs bleeding-edge drivers</li>
+          </ul>
+        </article>
+
+        <!-- BSD-based -->
+        <article class="glass rounded-2xl p-6 hover:bg-white/10 transition">
+          <div class="text-xs uppercase tracking-wider text-brand-300 font-semibold">BSD-based</div>
+          <h3 class="font-display text-xl font-bold mt-2">pfSense / OPNsense</h3>
+          <p class="text-white/70 text-sm mt-2">FreeBSD with PF; popular for DIY, SMB, and lab-grade reliability.</p>
+          <ul class="mt-4 space-y-1 text-sm text-white/80 list-disc list-inside">
+            <li>Pros: PF clarity, extensive add-ons</li>
+            <li>Cons: slower driver uptake vs Linux</li>
+          </ul>
+        </article>
+
+        <article class="glass rounded-2xl p-6 hover:bg-white/10 transition">
+          <div class="text-xs uppercase tracking-wider text-brand-300 font-semibold">BSD-based</div>
+          <h3 class="font-display text-xl font-bold mt-2">Juniper SRX (Junos)</h3>
+          <p class="text-white/70 text-sm mt-2">FreeBSD kernel; Flowd handles security processing separate from RE.</p>
+          <ul class="mt-4 space-y-1 text-sm text-white/80 list-disc list-inside">
+            <li>Pros: routing pedigree, scale</li>
+            <li>Cons: learning curve, feature interop nuances</li>
+          </ul>
+        </article>
+
+        <!-- Embedded / OEM -->
+        <article class="glass rounded-2xl p-6 hover:bg-white/10 transition">
+          <div class="text-xs uppercase tracking-wider text-brand-300 font-semibold">Embedded / OEM</div>
+          <h3 class="font-display text-xl font-bold mt-2">OpenWrt / VyOS / IPFire / ClearOS</h3>
+          <p class="text-white/70 text-sm mt-2">All Linux; from Buildroot (OpenWrt) to Debian (VyOS) bases for white-labeling.</p>
+          <ul class="mt-4 space-y-1 text-sm text-white/80 list-disc list-inside">
+            <li>Pros: flexible, OEM-ready</li>
+            <li>Cons: you own QA, updates, support</li>
+          </ul>
+        </article>
+
+        <article class="glass rounded-2xl p-6 hover:bg-white/10 transition">
+          <div class="text-xs uppercase tracking-wider text-brand-300 font-semibold">Embedded / OEM</div>
+          <h3 class="font-display text-xl font-bold mt-2">MikroTik RouterOS</h3>
+          <p class="text-white/70 text-sm mt-2">Linux kernel with a custom scheduler and routing engine.</p>
+          <ul class="mt-4 space-y-1 text-sm text-white/80 list-disc list-inside">
+            <li>Pros: feature density at low cost</li>
+            <li>Cons: closed stack, niche tooling</li>
+          </ul>
+        </article>
+
+        <article class="glass rounded-2xl p-6 hover:bg-white/10 transition">
+          <div class="text-xs uppercase tracking-wider text-brand-300 font-semibold">Embedded / OEM</div>
+          <h3 class="font-display text-xl font-bold mt-2">Ubiquiti EdgeOS / UniFi</h3>
+          <p class="text-white/70 text-sm mt-2">Debian/Vyatta roots; UI-first management with opinionated defaults.</p>
+          <ul class="mt-4 space-y-1 text-sm text-white/80 list-disc list-inside">
+            <li>Pros: clean UX, ecosystem fit</li>
+            <li>Cons: less low-level control</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Linux vs BSD -->
+  <section id="linux-vs-bsd" class="bg-slateish/60 border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-6 py-16">
+      <h2 class="font-display text-2xl md:text-3xl font-extrabold">Linux vs BSD — What Shifts the Choice?</h2>
+      <div class="mt-8 grid md:grid-cols-2 gap-6">
+        <div class="rounded-2xl p-6 bg-white/5">
+          <h3 class="font-display font-bold text-xl">Linux</h3>
+          <ul class="mt-4 space-y-2 text-white/80 text-sm list-disc list-inside">
+            <li>Fastest driver availability (NICs, Wi-Fi, accelerators)</li>
+            <li>Modern primitives (e.g., eBPF, nftables, WireGuard in-kernel)</li>
+            <li>Massive ecosystem for containerized services</li>
+            <li>Trade-off: variability across kernels and distros</li>
+          </ul>
+        </div>
+        <div class="rounded-2xl p-6 bg-white/5">
+          <h3 class="font-display font-bold text-xl">FreeBSD</h3>
+          <ul class="mt-4 space-y-2 text-white/80 text-sm list-disc list-inside">
+            <li>Coherent base system; predictable behavior</li>
+            <li>PF firewall: readable rulesets, deterministic feel</li>
+            <li>Great for stable appliances and long-running boxes</li>
+            <li>Trade-off: slower to support cutting-edge hardware</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Decision Guide -->
+  <section id="decision" class="relative">
+    <div class="max-w-7xl mx-auto px-6 py-16">
+      <h2 class="font-display text-2xl md:text-3xl font-extrabold">Quick Decision Guide</h2>
+      <div class="mt-8 grid lg:grid-cols-3 gap-6">
+        <div class="glass rounded-2xl p-6">
+          <h3 class="font-display font-bold text-lg">If you want OEM / White-Label</h3>
+          <p class="text-white/70 text-sm mt-2">Start with Linux (VyOS, OpenWrt, IPFire). Broad drivers and modern kernel paths.</p>
+          <ul class="mt-4 text-sm text-white/80 space-y-1 list-disc list-inside">
+            <li>Faster hardware enablement</li>
+            <li>Great container + KVM story</li>
+          </ul>
+        </div>
+        <div class="glass rounded-2xl p-6">
+          <h3 class="font-display font-bold text-lg">If you want Appliance Stability</h3>
+          <p class="text-white/70 text-sm mt-2">FreeBSD (pfSense/OPNsense). PF rules, stable ABI, low-drama upgrades.</p>
+          <ul class="mt-4 text-sm text-white/80 space-y-1 list-disc list-inside">
+            <li>Deterministic behavior</li>
+            <li>Great for long-lived deployments</li>
+          </ul>
+        </div>
+        <div class="glass rounded-2xl p-6">
+          <h3 class="font-display font-bold text-lg">If you want ASIC Offload</h3>
+          <p class="text-white/70 text-sm mt-2">Expect custom Linux with proprietary data paths (e.g., FortiOS, PAN-OS).</p>
+          <ul class="mt-4 text-sm text-white/80 space-y-1 list-disc list-inside">
+            <li>Performance at scale</li>
+            <li>Closed internals, vendor lock-in</li>
+          </ul>
+        </div>
+      </div>
+      <div class="mt-8 rounded-2xl p-6 bg-gradient-to-r from-brand-600 to-pink-600 shadow-soft">
+        <p class="text-sm md:text-base">
+          TL;DR — Building your own? Pick Linux for pace and hardware breadth. Shipping an appliance that should never surprise you?
+          FreeBSD with PF is a safe, boring choice (that’s a compliment).
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="bg-white text-ink">
+    <div class="max-w-7xl mx-auto px-6 py-16">
+      <h2 class="font-display text-2xl md:text-3xl font-extrabold">FAQ</h2>
+      <div class="mt-8 grid md:grid-cols-2 gap-6">
+        <details class="group rounded-xl border border-gray-200 p-5 open:bg-gray-50">
+          <summary class="flex cursor-pointer items-center justify-between">
+            <span class="font-semibold">Is “hybrid” just marketing?</span>
+            <span class="text-gray-400 group-open:rotate-180 transform transition">⌄</span>
+          </summary>
+          <p class="mt-3 text-gray-700 text-sm">
+            Not always. Many vendors run a Linux or FreeBSD kernel with a heavily customized userland and proprietary
+            packet-processing daemons. “Hybrid” often reflects mixed tooling lineage (e.g., RHEL-like base with unique modules).
+          </p>
+        </details>
+
+        <details class="group rounded-xl border border-gray-200 p-5 open:bg-gray-50">
+          <summary class="flex cursor-pointer items-center justify-between">
+            <span class="font-semibold">Why do DIY users love PF on FreeBSD?</span>
+            <span class="text-gray-400 group-open:rotate-180 transform transition">⌄</span>
+          </summary>
+          <p class="mt-3 text-gray-700 text-sm">
+            PF rulesets are readable and deterministic. FreeBSD’s base system also keeps things cohesive, which matters for appliances.
+          </p>
+        </details>
+
+        <details class="group rounded-xl border border-gray-200 p-5 open:bg-gray-50">
+          <summary class="flex cursor-pointer items-center justify-between">
+            <span class="font-semibold">When is Linux clearly better?</span>
+            <span class="text-gray-400 group-open:rotate-180 transform transition">⌄</span>
+          </summary>
+          <p class="mt-3 text-gray-700 text-sm">
+            When you need latest NICs, WireGuard/eBPF paths, containers, or you plan to ship across diverse hardware quickly.
+          </p>
+        </details>
+
+        <details class="group rounded-xl border border-gray-200 p-5 open:bg-gray-50">
+          <summary class="flex cursor-pointer items-center justify-between">
+            <span class="font-semibold">Can I white-label quickly?</span>
+            <span class="text-gray-400 group-open:rotate-180 transform transition">⌄</span>
+          </summary>
+          <p class="mt-3 text-gray-700 text-sm">
+            Yes—OpenWrt for embedded routers; VyOS/IPFire for x86 appliances. You’ll still own QA, updates, and security response.
+          </p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-ink border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-6 py-10 text-sm text-white/60">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <p>© <span id="y"></span> Firewall OS Atlas. All rights reserved.</p>
+        <div class="flex flex-wrap gap-4">
+          <a href="#lineages" class="hover:text-white">Lineages</a>
+          <a href="#linux-vs-bsd" class="hover:text-white">Linux vs BSD</a>
+          <a href="#decision" class="hover:text-white">Decision Guide</a>
+          <a href="#faq" class="hover:text-white">FAQ</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
