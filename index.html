@@ -1,290 +1,458 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Networkers Home — 20 Days • 20 Technologies</title>
-<meta name="description" content="Networkers Home — 20 Days • 20 Technologies Internship Challenge" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Network & DevOps Mentorship — 7 Weeks | Networkers Home</title>
+  <meta name="description" content="A 7-week mentorship for Network & DevOps engineers: firewalls, SD-WAN, ZTNA, Proxmox, Docker, Kubernetes basics, Zabbix/Grafana/Prometheus, Splunk, FortiNAC, IDS/IPS, and a real capstone hackathon."/>
+  <meta name="theme-color" content="#111827"/>
 
-<style>
-  /* =========================
-     SaaS-clean design tokens
-     ========================= */
-  :root{
-    --bg: #ffffff;
-    --ink: #0b1020;
-    --muted:#5b6475;
-    --line:#e9ecf2;
-    --soft:#f7f9fc;
+  <!-- Tailwind v2.2.19 -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            manrope: ['Manrope', 'Lato', 'ui-sans-serif', 'system-ui'],
+            ibm: ['IBM Plex Sans', 'Lato', 'ui-sans-serif', 'system-ui'],
+            lato: ['Lato', 'ui-sans-serif', 'system-ui']
+          },
+          colors: {
+            brand: {
+              50:  '#eef2ff',
+              100: '#e0e7ff',
+              200: '#c7d2fe',
+              300: '#a5b4fc',
+              400: '#818cf8',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              800: '#3730a3',
+              900: '#312e81'
+            }
+          },
+          boxShadow: {
+            soft: '0 10px 25px rgba(0,0,0,0.08)'
+          }
+        }
+      }
+    }
+  </script>
 
-    --brand:#2b6cff;          /* primary */
-    --brand-ink:#0b1c4a;
-    --accent:#16b397;         /* subtle accent for badges */
-
-    --radius-lg: 16px;
-    --radius-md: 12px;
-    --radius-sm: 8px;
-
-    --shadow-sm: 0 4px 16px rgba(16,24,40,0.06);
-    --shadow-md: 0 10px 30px rgba(16,24,40,0.08);
-
-    --container: 1120px;
-  }
-
-  /* Base */
-  *{box-sizing:border-box}
-  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink)}
-  body{font:16px/1.55 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial}
-
-  a{color:var(--brand);text-decoration:none}
-  a:hover{text-decoration:underline}
-  img{max-width:100%;display:block}
-
-  .container{max-width:var(--container);margin:0 auto;padding:0 20px}
-
-  /* Header */
-  .hdr{
-    position:sticky; top:0; z-index:20;
-    background:rgba(255,255,255,.85);
-    backdrop-filter:saturate(140%) blur(8px);
-    border-bottom:1px solid var(--line);
-  }
-  .hdr-row{
-    display:flex; align-items:center; justify-content:space-between;
-    height:64px;
-  }
-  .brand{
-    display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.2px;
-  }
-  .brand-dot{
-    width:12px;height:12px;border-radius:999px;
-    background:radial-gradient(circle at 40% 40%, #69f, #2b6cff 70%);
-    box-shadow:0 0 0 4px rgba(43,108,255,.12);
-  }
-  .nav a{color:#2d3445; font-weight:600; padding:10px 12px; border-radius:8px}
-  .nav a:hover{background:var(--soft)}
-
-  /* Hero */
-  .hero{
-    background:linear-gradient(180deg, #ffffff 0%, #fbfcfe 100%);
-    border-bottom:1px solid var(--line);
-  }
-  .hero-wrap{padding:48px 0 24px}
-  .eyebrow{
-    display:inline-block; font-weight:700; letter-spacing:.3px; color:var(--brand-ink);
-    background:#eaf1ff; border:1px solid #dbe6ff; padding:6px 10px; border-radius:999px; font-size:12px;
-    margin-bottom:14px;
-  }
-  h1{
-    margin:0; font-size:clamp(28px, 4.2vw, 42px); line-height:1.15; letter-spacing:-.2px;
-  }
-  .sub{
-    margin:12px 0 24px; color:var(--muted); max-width:70ch;
-  }
-  .hero-actions{display:flex; gap:10px; flex-wrap:wrap}
-  .btn{
-    appearance:none; border:1px solid #dfe5f0; background:#fff; color:#0b1020;
-    padding:10px 14px; border-radius:10px; font-weight:700; cursor:pointer;
-    box-shadow:var(--shadow-sm);
-  }
-  .btn:hover{transform:translateY(-1px)}
-  .btn.primary{
-    background:var(--brand); color:#fff; border-color:transparent; box-shadow:0 6px 18px rgba(43,108,255,.25);
-  }
-  .btn.primary:hover{filter:brightness(1.03)}
-
-  /* Controls */
-  .controls{
-    margin:18px 0 0; display:grid; gap:10px; grid-template-columns: 1fr 220px 160px;
-  }
-  @media (max-width:900px){ .controls{ grid-template-columns:1fr } }
-  .input, .select{
-    background:#fff; border:1px solid #dfe5f0; border-radius:10px; padding:12px 14px; color:#0b1020;
-    outline:none; box-shadow:inset 0 1px 0 rgba(16,24,40,0.02);
-  }
-  .input::placeholder{color:#9aa3b2}
-
-  /* Grid */
-  .grid{
-    padding:28px 0 64px;
-    display:grid; gap:16px; grid-template-columns: repeat(3, minmax(0,1fr));
-  }
-  @media (max-width:1040px){ .grid{ grid-template-columns: repeat(2, minmax(0,1fr)); } }
-  @media (max-width:680px){ .grid{ grid-template-columns:1fr; } }
-
-  .card{
-    background:#fff; border:1px solid var(--line); border-radius:var(--radius-lg);
-    padding:18px; box-shadow:var(--shadow-sm);
-    transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
-  }
-  .card:hover{ transform:translateY(-2px); box-shadow:var(--shadow-md); border-color:#d7dfee; }
-  .kicker{display:flex; align-items:center; gap:10px; margin-bottom:8px}
-  .badge{
-    display:inline-flex; align-items:center; gap:6px; padding:6px 10px; border-radius:999px;
-    border:1px solid #dfe5f0; background:var(--soft); color:#2d3445; font-weight:700; font-size:12px;
-  }
-  .day{
-    margin-left:auto; font-weight:800; color:#14213a; font-size:12px;
-    background:#eef7f5; border:1px solid #d9eee9; padding:6px 10px; border-radius:999px;
-  }
-  .title{margin:0 0 6px; font-weight:800; letter-spacing:.2px}
-  .focus{margin:0 0 6px; color:#1a2440; font-weight:700}
-  .objective{margin:0; color:var(--muted)}
-
-  /* Footer */
-  footer{
-    border-top:1px solid var(--line); padding:18px 0 36px; color:#6a7282; text-align:center; background:#fff;
-  }
-
-  /* Print */
-  @media print{
-    .hdr, .hero-actions, .controls{display:none!important}
-    body{color:#000}
-    .grid{grid-template-columns:1fr 1fr; gap:12px; padding:0}
-    .card{box-shadow:none}
-  }
-</style>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Manrope:wght@600;700;800&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* Gradient rings (subtle 2025 vibe) */
+    .ring-bg {
+      background:
+        radial-gradient(1200px 600px at -10% -20%, rgba(99,102,241,0.18), transparent 60%),
+        radial-gradient(900px 500px at 110% 0%, rgba(236,72,153,0.12), transparent 60%),
+        radial-gradient(800px 400px at 20% 120%, rgba(16,185,129,0.12), transparent 60%);
+    }
+    .glass {
+      background: rgba(255,255,255,0.7);
+      -webkit-backdrop-filter: saturate(1.4) blur(8px);
+      backdrop-filter: saturate(1.4) blur(8px);
+    }
+    .gradient-cta { background-image: linear-gradient(90deg, #4f46e5 0%, #22c55e 100%); }
+    .gradient-card { background-image: linear-gradient(135deg, #ffffff 0%, #f5f7ff 100%); }
+    .tick:before { content: "✓"; margin-right: 8px; color: #10b981; }
+    .x:before { content: "✕"; margin-right: 8px; color: #ef4444; }
+    .faq-a { display: none; }
+    .faq-open .faq-a { display: block; }
+  </style>
 </head>
-<body>
+
+<body class="font-ibm text-gray-800 bg-gray-50 ring-bg">
+  <!-- Top Banner -->
+  <div class="w-full bg-gray-900 text-gray-100 text-sm">
+    <div class="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between">
+      <span>🚀 Admissions Open — 7-Week Network & DevOps Mentorship (Limited seats)</span>
+      <a href="#apply" class="underline hover:text-brand-300">Apply Now</a>
+    </div>
+  </div>
 
   <!-- Header -->
-  <header class="hdr">
-    <div class="container hdr-row">
-      <div class="brand">
-        <span class="brand-dot" aria-hidden="true"></span>
-        <span>Networkers Home</span>
-      </div>
-      <nav class="nav" aria-label="Primary">
-        <a href="#">Program</a>
-        <a href="#">Schedule</a>
-        <a href="#" onclick="window.print()">Export PDF</a>
+  <header class="bg-white shadow-md sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="#" class="text-xl font-extrabold font-manrope text-gray-900">Networkers Home</a>
+      <nav class="hidden md:flex items-center space-x-8">
+        <a href="#about" class="hover:text-brand-600">About</a>
+        <a href="#syllabus" class="hover:text-brand-600">Syllabus</a>
+        <a href="#mentors" class="hover:text-brand-600">Mentors</a>
+        <a href="#pricing" class="hover:text-brand-600">Pricing</a>
+        <a href="#faq" class="hover:text-brand-600">FAQ</a>
+        <a href="#apply" class="inline-flex items-center bg-gray-900 text-white px-4 py-2 rounded-md hover:bg-black">Apply</a>
+      </nav>
+      <button id="mnav" class="md:hidden inline-flex items-center px-3 py-2 border rounded text-gray-700 border-gray-300">Menu</button>
+    </div>
+    <div id="mwrap" class="md:hidden hidden border-t bg-white">
+      <nav class="px-4 py-3 space-y-2">
+        <a href="#about" class="block">About</a>
+        <a href="#syllabus" class="block">Syllabus</a>
+        <a href="#mentors" class="block">Mentors</a>
+        <a href="#pricing" class="block">Pricing</a>
+        <a href="#faq" class="block">FAQ</a>
+        <a href="#apply" class="block font-medium text-white bg-gray-900 px-3 py-2 rounded-md">Apply</a>
       </nav>
     </div>
   </header>
 
   <!-- Hero -->
-  <section class="hero">
-    <div class="container hero-wrap">
-      <span class="eyebrow">Internship Challenge</span>
-      <h1>20 Days • 20 Technologies</h1>
-      <p class="sub">
-        A crisp, real-world track across virtualization, Linux, firewalls, VPNs, routing, monitoring,
-        automation, containers, clustering, and integration. Browse, filter, and print.
-      </p>
-
-      <div class="hero-actions">
-        <button class="btn primary" onclick="window.print()">Print / Save as PDF</button>
-        <button class="btn" onclick="resetFilters()">Reset Filters</button>
+  <section id="about" class="relative">
+    <div class="max-w-7xl mx-auto px-4 py-12 md:py-16 grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <h1 class="font-manrope text-4xl md:text-5xl leading-tight font-extrabold text-gray-900">
+          Network & DevOps Mentorship — 7 Weeks of Real Infrastructure
+        </h1>
+        <p class="mt-4 text-gray-700">
+          Build, secure, and monitor a production-style hybrid network: pfSense/OPNsense, FortiGate SD-WAN, Proxmox, Docker, Zabbix/Grafana/Prometheus, Splunk, Tailscale/Twingate, FortiNAC, IDS/IPS — and finish with a real capstone hackathon.
+        </p>
+        <div class="mt-6 flex flex-wrap items-center space-x-3">
+          <span class="inline-flex items-center px-3 py-1 text-xs font-semibold rounded-full bg-brand-100 text-brand-700">Mentor-led</span>
+          <span class="inline-flex items-center px-3 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-700">Hands-on Pods</span>
+          <span class="inline-flex items-center px-3 py-1 text-xs font-semibold rounded-full bg-pink-100 text-pink-700">Placement-oriented</span>
+        </div>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="#apply" class="inline-flex items-center px-6 py-3 text-white rounded-md gradient-cta shadow-soft hover:opacity-95">Apply for Next Cohort</a>
+          <a href="#syllabus" class="inline-flex items-center px-6 py-3 bg-white border border-gray-300 rounded-md hover:bg-gray-50">See Full Syllabus</a>
+        </div>
+        <p class="mt-4 text-xs text-gray-500">Cohorts start every month · 1 mentor : 10 students · 2 live sessions/week</p>
       </div>
-
-      <div class="controls">
-        <input class="input" id="q" placeholder="Search: pfSense, FortiGate, Proxmox, OSPF, VPN…" oninput="applyFilters()" />
-        <select class="select" id="theme" onchange="applyFilters()">
-          <option value="">Theme (all)</option>
-          <option>Virtualization</option>
-          <option>Linux</option>
-          <option>Firewall</option>
-          <option>VPN</option>
-          <option>Routing</option>
-          <option>Monitoring</option>
-          <option>Automation</option>
-          <option>Containers</option>
-          <option>Cluster/HA</option>
-          <option>Backup/DR</option>
-          <option>Integration</option>
-        </select>
-        <select class="select" id="jump" onchange="applyFilters()">
-          <option value="">Jump to Day</option>
-          <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
-          <option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
-          <option>11</option><option>12</option><option>13</option><option>14</option><option>15</option>
-          <option>16</option><option>17</option><option>18</option><option>19</option><option>20</option>
-        </select>
+      <div class="relative">
+        <div class="gradient-card rounded-2xl shadow-soft p-6">
+          <div class="grid grid-cols-2 gap-4">
+            <div class="p-4 bg-white rounded-xl border">
+              <p class="text-xs text-gray-500">Firewalls</p>
+              <p class="font-manrope font-bold text-lg">pfSense · FortiGate</p>
+            </div>
+            <div class="p-4 bg-white rounded-xl border">
+              <p class="text-xs text-gray-500">Cloud + ZTNA</p>
+              <p class="font-manrope font-bold text-lg">AWS · Tailscale</p>
+            </div>
+            <div class="p-4 bg-white rounded-xl border">
+              <p class="text-xs text-gray-500">Observability</p>
+              <p class="font-manrope font-bold text-lg">Grafana · Splunk</p>
+            </div>
+            <div class="p-4 bg-white rounded-xl border">
+              <p class="text-xs text-gray-500">Automation</p>
+              <p class="font-manrope font-bold text-lg">Bash · Python</p>
+            </div>
+          </div>
+          <ul class="mt-5 text-sm space-y-2">
+            <li class="tick">Dual-ISP SD-WAN with failover</li>
+            <li class="tick">Proxmox virtual lab networking</li>
+            <li class="tick">SOC alerts & incident drill</li>
+            <li class="tick">Capstone hackathon with review</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Cards -->
-  <main class="container" style="padding-top:12px;">
-    <section id="grid" class="grid" aria-live="polite"></section>
-  </main>
+  <!-- Outcomes -->
+  <section class="py-10">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="font-manrope text-2xl md:text-3xl font-extrabold text-gray-900">What you’ll ship in 7 weeks</h2>
+      <div class="mt-6 grid md:grid-cols-3 gap-6">
+        <div class="glass rounded-xl p-6 border">
+          <h3 class="font-manrope font-bold text-lg">Production-style Topology</h3>
+          <p class="mt-2 text-sm text-gray-700">On-prem + AWS hybrid with ZTNA, SD-WAN, monitoring, and logs.</p>
+        </div>
+        <div class="glass rounded-xl p-6 border">
+          <h3 class="font-manrope font-bold text-lg">SOC Dashboard & Playbook</h3>
+          <p class="mt-2 text-sm text-gray-700">Grafana + Splunk alerts, incident notes, and response steps.</p>
+        </div>
+        <div class="glass rounded-xl p-6 border">
+          <h3 class="font-manrope font-bold text-lg">Mentor-signed Project</h3>
+          <p class="mt-2 text-sm text-gray-700">Reviewed configs, screenshots, and a concise architecture report.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <footer>
-    Networkers Home • © 2025 • 20 Days • 20 Technologies
+  <!-- Mentors -->
+  <section id="mentors" class="py-10 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex items-end justify-between">
+        <h2 class="font-manrope text-2xl md:text-3xl font-extrabold text-gray-900">Mentors</h2>
+        <a href="#apply" class="text-sm text-brand-700 hover:text-brand-900">Become a mentor →</a>
+      </div>
+      <div class="mt-6 grid md:grid-cols-3 gap-6">
+        <div class="rounded-xl border bg-white p-6 shadow-sm">
+          <p class="text-xs text-gray-500">Firewall & SD-WAN</p>
+          <h3 class="font-manrope font-bold text-lg">Senior Network Architect</h3>
+          <p class="text-sm mt-2 text-gray-700">FortiGate, pfSense/OPNsense, micro-segmentation, multi-ISP.</p>
+        </div>
+        <div class="rounded-xl border bg-white p-6 shadow-sm">
+          <p class="text-xs text-gray-500">Cloud & ZTNA</p>
+          <h3 class="font-manrope font-bold text-lg">Cloud Security Engineer</h3>
+          <p class="text-sm mt-2 text-gray-700">AWS VPC, OpenVPN, Tailscale ACLs, Zero-Trust rollout.</p>
+        </div>
+        <div class="rounded-xl border bg-white p-6 shadow-sm">
+          <p class="text-xs text-gray-500">Observability & SOC</p>
+          <h3 class="font-manrope font-bold text-lg">DevSecOps Lead</h3>
+          <p class="text-sm mt-2 text-gray-700">Zabbix/Grafana/Prometheus, Splunk, incident response.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Syllabus (Accordion) -->
+  <section id="syllabus" class="py-12">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="font-manrope text-2xl md:text-3xl font-extrabold text-gray-900">7-Week Syllabus</h2>
+      <p class="mt-2 text-gray-600 text-sm">Two live sessions per week (concept + review) · 5–10 lab hours weekly.</p>
+
+      <div class="mt-6 space-y-3">
+        <!-- Week 1 -->
+        <details class="group bg-white border rounded-lg shadow-sm">
+          <summary class="cursor-pointer list-none px-5 py-4 flex justify-between items-center">
+            <span class="font-semibold">Week 1 — pfSense, OPNsense & FortiGate Firewalls</span>
+            <span class="text-gray-400 group-open:transform group-open:rotate-90">›</span>
+          </summary>
+          <div class="px-5 pb-5 text-sm text-gray-700 space-y-2">
+            <p><strong>Concepts:</strong> NAT, stateful policies, PBR, IPsec/SSL-VPN, dual-ISP SD-WAN.</p>
+            <p><strong>Labs:</strong> pfSense/OPNsense VMs, DMZ, ACLs, FortiGate SD-WAN, forward/reverse proxy.</p>
+            <p><strong>Outcome:</strong> Multi-WAN firewall with enforceable policy sets.</p>
+          </div>
+        </details>
+        <!-- Week 2 -->
+        <details class="group bg-white border rounded-lg shadow-sm">
+          <summary class="cursor-pointer list-none px-5 py-4 flex justify-between items-center">
+            <span class="font-semibold">Week 2 — Virtualization & Infrastructure Automation</span>
+            <span class="text-gray-400 group-open:transform group-open:rotate-90">›</span>
+          </summary>
+          <div class="px-5 pb-5 text-sm text-gray-700 space-y-2">
+            <p><strong>Concepts:</strong> Proxmox, bridges/VLANs, templates/snapshots, Bash automation.</p>
+            <p><strong>Labs:</strong> Proxmox cluster, scripted VM deploys, virtual LAN interconnects.</p>
+            <p><strong>Outcome:</strong> Reliable virtual underlay for repeatable labs.</p>
+          </div>
+        </details>
+        <!-- Week 3 -->
+        <details class="group bg-white border rounded-lg shadow-sm">
+          <summary class="cursor-pointer list-none px-5 py-4 flex justify-between items-center">
+            <span class="font-semibold">Week 3 — Containers & Observability</span>
+            <span class="text-gray-400 group-open:transform group-open:rotate-90">›</span>
+          </summary>
+          <div class="px-5 pb-5 text-sm text-gray-700 space-y-2">
+            <p><strong>Concepts:</strong> Docker/Compose, container networking/volumes, K8s basics.</p>
+            <p><strong>Labs:</strong> Grafana + Prometheus + Node Exporter, firewall metrics dashboards.</p>
+            <p><strong>Outcome:</strong> Monitored container stack with clear service health.</p>
+          </div>
+        </details>
+        <!-- Week 4 -->
+        <details class="group bg-white border rounded-lg shadow-sm">
+          <summary class="cursor-pointer list-none px-5 py-4 flex justify-between items-center">
+            <span class="font-semibold">Week 4 — Monitoring & Security Analytics</span>
+            <span class="text-gray-400 group-open:transform group-open:rotate-90">›</span>
+          </summary>
+          <div class="px-5 pb-5 text-sm text-gray-700 space-y-2">
+            <p><strong>Concepts:</strong> Zabbix, triggers/escalations, Splunk ingestion & search.</p>
+            <p><strong>Labs:</strong> Network device metrics, Grafana traffic/latency boards, Splunk pipeline.</p>
+            <p><strong>Outcome:</strong> Metrics + logs tied to a single operational view.</p>
+          </div>
+        </details>
+        <!-- Week 5 -->
+        <details class="group bg-white border rounded-lg shadow-sm">
+          <summary class="cursor-pointer list-none px-5 py-4 flex justify-between items-center">
+            <span class="font-semibold">Week 5 — Cloud Networking & Zero-Trust Access</span>
+            <span class="text-gray-400 group-open:transform group-open:rotate-90">›</span>
+          </summary>
+          <div class="px-5 pb-5 text-sm text-gray-700 space-y-2">
+            <p><strong>Concepts:</strong> AWS VPC/subnets, IGW/NAT, EC2 SG/IAM, ZTNA (Tailscale/Twingate).</p>
+            <p><strong>Labs:</strong> OpenVPN on EC2, on-prem ↔ cloud via ZTNA, ACL-based user/device limits.</p>
+            <p><strong>Outcome:</strong> Secure hybrid connectivity enforceable per identity.</p>
+          </div>
+        </details>
+        <!-- Week 6 -->
+        <details class="group bg-white border rounded-lg shadow-sm">
+          <summary class="cursor-pointer list-none px-5 py-4 flex justify-between items-center">
+            <span class="font-semibold">Week 6 — SOC Monitoring & Automation</span>
+            <span class="text-gray-400 group-open:transform group-open:rotate-90">›</span>
+          </summary>
+          <div class="px-5 pb-5 text-sm text-gray-700 space-y-2">
+            <p><strong>Concepts:</strong> Syslog → detection → response, alert logic, Python for backups.</p>
+            <p><strong>Labs:</strong> FortiGate/pfSense → Splunk, Grafana threat alerts, Python config backup.</p>
+            <p><strong>Outcome:</strong> Mini-SOC with repeatable automation.</p>
+          </div>
+        </details>
+        <!-- Week 7 -->
+        <details class="group bg-white border rounded-lg shadow-sm">
+          <summary class="cursor-pointer list-none px-5 py-4 flex justify-between items-center">
+            <span class="font-semibold">Week 7 — FortiNAC / IDS-IPS / Final Hackathon</span>
+            <span class="text-gray-400 group-open:transform group-open:rotate-90">›</span>
+          </summary>
+          <div class="px-5 pb-5 text-sm text-gray-700 space-y-2">
+            <p><strong>Concepts:</strong> NAC posture/profile, Suricata/Snort tuning, incident workflow.</p>
+            <p><strong>Labs:</strong> FortiNAC with FortiGate, detect/contain simulated intrusion, presentation.</p>
+            <p><strong>Capstone:</strong> Secure Hybrid Enterprise Network — diagram, configs, logs, SOC report.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing" class="py-12 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="font-manrope text-2xl md:text-3xl font-extrabold text-gray-900">Pricing</h2>
+      <div class="mt-6 grid md:grid-cols-2 gap-6">
+        <!-- Standard -->
+        <div class="rounded-2xl border shadow-soft bg-white p-6">
+          <h3 class="font-manrope font-extrabold text-xl">Standard Mentorship</h3>
+          <p class="text-gray-500 mt-1">7 Weeks · Group feedback · Full lab access</p>
+          <div class="mt-4 flex items-end">
+            <span class="text-3xl font-extrabold">₹9,999</span>
+            <span class="ml-2 text-sm text-gray-500">/ cohort</span>
+          </div>
+          <ul class="mt-4 text-sm space-y-2">
+            <li class="tick">2 live sessions/week</li>
+            <li class="tick">Dedicated pods (timed)</li>
+            <li class="tick">Capstone review</li>
+            <li class="x text-gray-500">1-on-1 mock interview</li>
+            <li class="x text-gray-500">Placement prep pack</li>
+          </ul>
+          <a href="#apply" class="mt-6 inline-flex w-full justify-center gradient-cta text-white py-3 rounded-md">Join Standard</a>
+        </div>
+        <!-- Premium -->
+        <div class="rounded-2xl border-2 border-brand-500 shadow-soft bg-white p-6 relative">
+          <span class="absolute -top-3 right-6 bg-brand-600 text-white text-xs px-3 py-1 rounded-full">Most Popular</span>
+          <h3 class="font-manrope font-extrabold text-xl">Premium Track</h3>
+          <p class="text-gray-500 mt-1">7 Weeks · 1-on-1 support · Placement prep</p>
+          <div class="mt-4 flex items-end">
+            <span class="text-3xl font-extrabold">₹14,999</span>
+            <span class="ml-2 text-sm text-gray-500">/ cohort</span>
+          </div>
+          <ul class="mt-4 text-sm space-y-2">
+            <li class="tick">Everything in Standard</li>
+            <li class="tick">1-on-1 mock interview</li>
+            <li class="tick">Resume & project review</li>
+            <li class="tick">Placement prep pack</li>
+          </ul>
+          <a href="#apply" class="mt-6 inline-flex w-full justify-center gradient-cta text-white py-3 rounded-md">Join Premium</a>
+        </div>
+      </div>
+      <p class="mt-4 text-xs text-gray-500">Revenue share for mentors: 50–60% per batch (internal).</p>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="py-12">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="font-manrope text-2xl md:text-3xl font-extrabold text-gray-900">How it works</h2>
+      <div class="mt-6 grid md:grid-cols-4 gap-6">
+        <div class="glass p-5 rounded-xl border">
+          <h3 class="font-semibold">1) Apply</h3>
+          <p class="text-sm mt-1 text-gray-700">Verify basics (CCNA-level). Pick Standard or Premium.</p>
+        </div>
+        <div class="glass p-5 rounded-xl border">
+          <h3 class="font-semibold">2) Onboard</h3>
+          <p class="text-sm mt-1 text-gray-700">Get portal access, pod schedule, and cohort calendar.</p>
+        </div>
+        <div class="glass p-5 rounded-xl border">
+          <h3 class="font-semibold">3) Build</h3>
+          <p class="text-sm mt-1 text-gray-700">Live concept + guided lab → weekly reviews and fixes.</p>
+        </div>
+        <div class="glass p-5 rounded-xl border">
+          <h3 class="font-semibold">4) Ship</h3>
+          <p class="text-sm mt-1 text-gray-700">Capstone, mentor sign-off, and placement readiness.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="py-12 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="font-manrope text-2xl md:text-3xl font-extrabold text-gray-900">FAQs</h2>
+      <div class="mt-6 space-y-3">
+        <div class="border rounded-lg p-5 faq">
+          <button class="w-full text-left font-semibold flex justify-between items-center faq-q">
+            <span>Who is this for?</span><span>+</span>
+          </button>
+          <div class="faq-a mt-3 text-sm text-gray-700">Final year students, freshers, and working engineers aiming for security/DevOps roles.</div>
+        </div>
+        <div class="border rounded-lg p-5 faq">
+          <button class="w-full text-left font-semibold flex justify-between items-center faq-q">
+            <span>Do I need prior experience?</span><span>+</span>
+          </button>
+          <div class="faq-a mt-3 text-sm text-gray-700">CCNA-level basics help. We teach everything else hands-on.</div>
+        </div>
+        <div class="border rounded-lg p-5 faq">
+          <button class="w-full text-left font-semibold flex justify-between items-center faq-q">
+            <span>What do I get at the end?</span><span>+</span>
+          </button>
+          <div class="faq-a mt-3 text-sm text-gray-700">Mentor-signed capstone report, certificate, and placement preparation (Premium).</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="apply" class="py-14">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="rounded-2xl gradient-card p-8 md:p-10 shadow-soft flex flex-col md:flex-row md:items-center md:justify-between">
+        <div>
+          <h3 class="font-manrope text-2xl md:text-3xl font-extrabold text-gray-900">Ready to build a real network, not a demo?</h3>
+          <p class="mt-2 text-gray-700">Next cohort starts soon. Limited to 10 learners per mentor.</p>
+        </div>
+        <a href="#" class="mt-5 md:mt-0 inline-flex items-center px-6 py-3 text-white rounded-md gradient-cta shadow-soft">Apply Now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-300">
+    <div class="max-w-7xl mx-auto px-4 py-10 grid md:grid-cols-4 gap-8">
+      <div>
+        <h4 class="font-manrope font-extrabold text-white">Networkers Home</h4>
+        <p class="mt-2 text-sm text-gray-400">Real labs. Real mentors. Real outcomes.</p>
+      </div>
+      <div>
+        <h5 class="font-semibold text-white">Program</h5>
+        <ul class="mt-2 text-sm space-y-2">
+          <li><a href="#syllabus" class="hover:text-white">Syllabus</a></li>
+          <li><a href="#mentors" class="hover:text-white">Mentors</a></li>
+          <li><a href="#pricing" class="hover:text-white">Pricing</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="font-semibold text-white">Company</h5>
+        <ul class="mt-2 text-sm space-y-2">
+          <li><a href="#" class="hover:text-white">About</a></li>
+          <li><a href="#" class="hover:text-white">Contact</a></li>
+          <li><a href="#" class="hover:text-white">Terms</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="font-semibold text-white">Get Started</h5>
+        <a href="#apply" class="inline-flex mt-3 items-center px-4 py-2 bg-white text-gray-900 rounded-md">Apply</a>
+      </div>
+    </div>
+    <div class="border-t border-gray-800">
+      <div class="max-w-7xl mx-auto px-4 py-4 text-xs text-gray-500">
+        © 2025 Networkers Home. All rights reserved.
+      </div>
+    </div>
   </footer>
 
-<script>
-  // Data — final sequence (pfSense split over Day 3/4, no FreeRADIUS, FortiGate on Day 12)
-  const DAYS = [
-    {day:1,  theme:"Virtualization", focus:"VMware ESXi & Windows VM", objective:"Install ESXi, create a Windows VM, and enable RDP access."},
-    {day:2,  theme:"Linux",          focus:"Ubuntu VM & SSH Remote",   objective:"Deploy Ubuntu VM, enable SSH, and verify India ↔ Paris remote access."},
-    {day:3,  theme:"Firewall",       focus:"pfSense Firewall — Install", objective:"Install pfSense firewall VM and verify network interfaces."},
-    {day:4,  theme:"Firewall",       focus:"pfSense Firewall — Configure", objective:"Configure LAN/WAN, NAT, and firewall rules for controlled access."},
-    {day:5,  theme:"VPN",            focus:"WireGuard VPN",            objective:"Build a secure tunnel between India and Paris environments."},
-    {day:6,  theme:"VPN",            focus:"OpenVPN Site-to-Site",     objective:"Set up OpenVPN S2S and compare throughput vs WireGuard."},
-    {day:7,  theme:"VPN",            focus:"Tailscale Mesh VPN",       objective:"Create a zero-config mesh network with subnet routing for VMs."},
-    {day:8,  theme:"Routing",        focus:"DNS & DHCP Server",        objective:"Centralize IP allocation and name resolution for VLANs."},
-    {day:9,  theme:"Virtualization", focus:"Migrate to Proxmox",       objective:"Move workloads from ESXi to Proxmox and validate networking."},
-    {day:10, theme:"Routing",        focus:"MikroTik RouterOS",        objective:"Configure VLANs, NAT, and bandwidth limits on RouterOS."},
-    {day:11, theme:"Routing",        focus:"Dynamic Routing (OSPF)",   objective:"Automate routing between Cisco and MikroTik routers."},
-    {day:12, theme:"Firewall",       focus:"FortiGate Firewall (Install + Configure)", objective:"Deploy and configure FortiGate for real traffic inspection and policy enforcement."},
-    {day:13, theme:"Monitoring",     focus:"IDS/IPS (Suricata / Zeek)",objective:"Monitor and detect network threats in mirrored traffic."},
-    {day:14, theme:"Monitoring",     focus:"Zabbix / Grafana / Prometheus", objective:"Implement monitoring and alerting across infra components."},
-    {day:15, theme:"Automation",     focus:"Ansible Automation",       objective:"Automate VM and user configuration with playbooks."},
-    {day:16, theme:"Containers",     focus:"Docker Networking",        objective:"Deploy a web app with reverse proxy and container networking."},
-    {day:17, theme:"Cluster/HA",     focus:"Proxmox Cluster & HA",     objective:"Build a two-node cluster and perform live VM migration."},
-    {day:18, theme:"Backup/DR",      focus:"Backup & Restore",         objective:"Create and test a full backup and recovery plan."},
-    {day:19, theme:"Integration",    focus:"Advanced Routing & VPN Integration", objective:"Combine VPN + Routing + Firewall for unified traffic control."},
-    {day:20, theme:"Integration",    focus:"Final Integration Project", objective:"Present complete infra: routers, VPNs, monitoring, and automation."},
-  ];
-
-  const grid = document.getElementById('grid');
-
-  function card(d){
-    return `
-      <article class="card" data-day="${d.day}" data-theme="${d.theme}">
-        <div class="kicker">
-          <span class="badge">${d.theme}</span>
-          <span class="day">DAY ${d.day}</span>
-        </div>
-        <h3 class="title">${d.focus}</h3>
-        <p class="objective">${d.objective}</p>
-      </article>
-    `;
-  }
-
-  function render(list=DAYS){
-    grid.innerHTML = list.map(card).join('');
-    const v = document.getElementById('jump').value;
-    if(v){
-      const n = grid.querySelector(`[data-day="${v}"]`);
-      if(n) n.scrollIntoView({behavior:'smooth', block:'center'});
-    }
-  }
-  render();
-
-  function applyFilters(){
-    const q = (document.getElementById('q').value || "").toLowerCase();
-    const theme = (document.getElementById('theme').value || "").toLowerCase();
-    const jump = (document.getElementById('jump').value || "").trim();
-
-    let out = DAYS.filter(d=>{
-      const hay = `${d.theme} ${d.focus} ${d.objective}`.toLowerCase();
-      const okText = !q || hay.includes(q);
-      const okTheme = !theme || d.theme.toLowerCase() === theme;
-      const okDay = !jump || String(d.day) === jump;
-      return okText && okTheme && okDay;
+  <!-- Minimal JS -->
+  <script>
+    // Mobile nav
+    document.getElementById('mnav').addEventListener('click', () => {
+      const m = document.getElementById('mwrap');
+      m.classList.toggle('hidden');
     });
-    render(out);
-  }
 
-  function resetFilters(){
-    document.getElementById('q').value = "";
-    document.getElementById('theme').value = "";
-    document.getElementById('jump').value = "";
-    render(DAYS);
-    window.scrollTo({top:0, behavior:'smooth'});
-  }
-</script>
+    // FAQ toggles
+    document.querySelectorAll('.faq').forEach((el) => {
+      const btn = el.querySelector('.faq-q');
+      btn.addEventListener('click', () => {
+        el.classList.toggle('faq-open');
+      });
+    });
+  </script>
 </body>
 </html>
