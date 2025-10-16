@@ -1,115 +1,208 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Future of Jobs & Internet Revolution in India | Networkers Home</title>
-  <script src="https://cdn.tailwindcss.com/2.2.19"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SPARKS Internship — 3-Week Syllabus</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body {font-family: 'Lato', sans-serif;}
-    h1, h2, h3 {font-family: 'Manrope', sans-serif;}
+    /* subtle card border for light/dark */
+    .card {
+      border: 1px solid rgba(0,0,0,0.06);
+      backdrop-filter: blur(6px);
+    }
+    @media (prefers-color-scheme: dark) {
+      .card { border-color: rgba(255,255,255,0.06); }
+    }
   </style>
 </head>
-<body class="bg-gradient-to-b from-gray-50 to-gray-100 text-gray-900">
-  
-  <!-- Header -->
-  <section class="py-16 px-6 max-w-6xl mx-auto">
-    <h1 class="text-5xl font-extrabold text-gray-900 mb-6 leading-tight">
-      The Future of Jobs, Internet, and India's Next Multi-Trillion Opportunity
-    </h1>
-    <p class="text-lg text-gray-700 leading-relaxed">
-      A mentor’s perspective on how AI, Internet infrastructure, and smart cost-saving innovation will redefine careers in India — and how Networkers Home is preparing students to lead that change.
-    </p>
-  </section>
+<body class="bg-gray-50 text-slate-800 antialiased">
+  <div class="max-w-6xl mx-auto px-6 py-10">
+    <header class="flex items-start justify-between gap-4 mb-8">
+      <div>
+        <h1 class="text-3xl font-extrabold tracking-tight">SPARKS Internship</h1>
+        <p class="mt-1 text-sm text-slate-500">End-to-end hands-on syllabus — Core networking, virtualization, cloud, security, and monitoring.</p>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="text-xs font-medium px-3 py-1 rounded-full bg-indigo-100 text-indigo-700">20-day program (Days 1–13 shown)</span>
+      </div>
+    </header>
 
-  <!-- Section: Growth -->
-  <section class="max-w-6xl mx-auto px-6 py-12 bg-white rounded-3xl shadow-md mb-12">
-    <h2 class="text-3xl font-bold mb-4 text-gray-900">India’s Exponential Growth Story</h2>
-    <p class="text-gray-700 leading-relaxed mb-4">
-      India is entering a decade of unstoppable growth — driven by Internet access, AI adoption, and digital transformation across every sector. From education to manufacturing, agriculture to health care, technology is now at the center of everything.
-    </p>
-    <p class="text-gray-700 leading-relaxed">
-      As the world’s fastest-growing Internet market, India’s economy will rely heavily on those who can build and maintain efficient IT infrastructure. Experts who can help companies, colleges, and public institutions save massive costs through smarter network design will be the ones creating wealth.
-    </p>
-  </section>
+    <!-- Week 1 -->
+    <section class="mb-10">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-2xl font-semibold">WEEK 1 — CORE NETWORKING & VIRTUALIZATION FOUNDATIONS</h2>
+        <span class="text-sm text-slate-500">Days 1 — 5</span>
+      </div>
 
-  <!-- Section: Networkers Home Vision -->
-  <section class="max-w-6xl mx-auto px-6 py-12 bg-white rounded-3xl shadow-md mb-12">
-    <h2 class="text-3xl font-bold mb-4 text-gray-900">Networkers Home — Leading the Infrastructure Revolution</h2>
-    <p class="text-gray-700 leading-relaxed mb-6">
-      Networkers Home, with over 25 years of deep expertise in Networking and Network Security, is positioning itself ahead of this transformation. Our new IT division is partnering with over <strong>50+ of the world’s most remarkable companies</strong> — including Fortinet, Palo Alto, Cisco, and others — while building India’s largest <strong>discount store for IT solutions</strong>, serving partners and distributors nationwide.
-    </p>
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <!-- Day 1 -->
+        <article class="card bg-white rounded-xl p-5 shadow-sm">
+          <h3 class="text-lg font-semibold mb-2">Day 1 — Linux Access & Environment Setup</h3>
+          <ul class="text-sm space-y-2 text-slate-600">
+            <li>SSH fundamentals (key-based login, privilege separation)</li>
+            <li>Host access via SSH</li>
+            <li>VM provisioning (VirtualBox or KVM/QEMU)</li>
+            <li>Network config: static & dynamic IP</li>
+            <li>Basic Linux tools: <code>netstat</code>, <code>ss</code>, <code>ip</code>, <code>nmcli</code>, <code>systemctl</code></li>
+          </ul>
+        </article>
 
-    <div class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-6 mb-6">
-      <h3 class="text-2xl font-semibold text-blue-700 mb-3">Make in India. For the World.</h3>
-      <p class="text-gray-700 leading-relaxed">
-        Our long-term vision is to design and manufacture Indian networking products — Wi-Fi access points, routers, switches, firewalls, ZTNA devices, and open-source-powered appliances. These will lower costs for schools, colleges, and SMEs by up to <strong>70%</strong> while matching or exceeding global standards.
-      </p>
-      <p class="text-gray-700 leading-relaxed mt-3">
-        Consider this: a Cisco and an Aruba switch can differ in price by almost 50%, yet performance reviews often favor Aruba. India, a price-sensitive market, deserves that kind of smart choice — built locally and supported globally.
-      </p>
-    </div>
+        <!-- Day 2 -->
+        <article class="card bg-white rounded-xl p-5 shadow-sm">
+          <h3 class="text-lg font-semibold mb-2">Day 2 — Secure Remote Access</h3>
+          <ul class="text-sm space-y-2 text-slate-600">
+            <li>WireGuard site-to-site VPN setup</li>
+            <li>Install Windows VM + Ubuntu Core</li>
+            <li>Install Chrome on Ubuntu Core via Snap</li>
+            <li>Remote SSH using Tailscale mesh VPN</li>
+            <li>Cross-VM connectivity verification</li>
+          </ul>
+        </article>
 
-    <p class="text-gray-700 leading-relaxed">
-      This vision is led by <strong>Mr. Vikas Swami</strong> — a dual CCIE expert with unmatched multi-vendor and multi-cloud experience. His background spans over three decades in C, C++, and kernel-level development, along with cloud mastery across OpenNebula, MicroCloud, and every major public cloud.  
-      It’s a rare combination of <em>hardware depth, software skill, and business leadership</em> that drives the NH product roadmap.
-    </p>
-  </section>
+        <!-- Day 3 -->
+        <article class="card bg-white rounded-xl p-5 shadow-sm">
+          <h3 class="text-lg font-semibold mb-2">Day 3 — DNS and Containerization Basics</h3>
+          <ul class="text-sm space-y-2 text-slate-600">
+            <li>DNS lookup, records, resolution labs using Bind9 and <code>dig</code></li>
+            <li>Pod-based addressing and name resolution</li>
+            <li>Docker + LXC installation</li>
+            <li>Build 3 Docker containers and interconnect</li>
+            <li><code>docker-compose</code> orchestration basics</li>
+          </ul>
+        </article>
 
-  <!-- Section: Partner & Entrepreneurship Model -->
-  <section class="max-w-6xl mx-auto px-6 py-12 bg-white rounded-3xl shadow-md mb-12">
-    <h2 class="text-3xl font-bold mb-4 text-gray-900">Empowering Students as Partners & Entrepreneurs</h2>
-    <p class="text-gray-700 leading-relaxed mb-4">
-      Every student at Networkers Home is encouraged to think beyond jobs. While we support placements across top global IT companies, we also prepare students to take their experience and create opportunities in their own cities.
-    </p>
-    <p class="text-gray-700 leading-relaxed mb-4">
-      India has over <strong>500 major cities</strong> — each ready for digital expansion. NH students can become <strong>Authorised Silver and Gold Partners</strong> in their local regions at <strong>zero joining fee</strong>. These partners will represent Networkers Home’s ecosystem and collaborate directly with our 50+ technology partners.
-    </p>
-    <div class="bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl p-6 mb-6">
-      <h3 class="text-2xl font-semibold text-green-700 mb-3">The Model</h3>
-      <ul class="list-disc ml-6 text-gray-700 space-y-2">
-        <li>Students first gain hands-on experience through NH training and internships.</li>
-        <li>They then represent NH in their city — serving local schools, colleges, and businesses with cost-effective IT and networking solutions.</li>
-        <li>As they grow, they gain access to joint projects, mentorship, and future co-ownership opportunities within NH’s new ventures.</li>
-      </ul>
-    </div>
-    <p class="text-gray-700 leading-relaxed">
-      The goal is simple — create a nationwide community of NH-trained professionals who lead digital transformation from the ground up.  
-      Entrepreneurship taught not as theory, but as lived experience.
-    </p>
-  </section>
+        <!-- Day 4 -->
+        <article class="card bg-white rounded-xl p-5 shadow-sm">
+          <h3 class="text-lg font-semibold mb-2">Day 4 — Container OS and Management</h3>
+          <ul class="text-sm space-y-2 text-slate-600">
+            <li>Install Cosmos OS (LXC) environment</li>
+            <li>Deploy and manage containers via Portainer web UI</li>
+            <li>Configure container networking and persistent volumes</li>
+          </ul>
+        </article>
 
-  <!-- Section: The Broader Vision -->
-  <section class="max-w-6xl mx-auto px-6 py-12 bg-white rounded-3xl shadow-md mb-12">
-    <h2 class="text-3xl font-bold mb-4 text-gray-900">Building for a Connected Future</h2>
-    <p class="text-gray-700 leading-relaxed mb-4">
-      As every home, office, and shop goes online, India will see new models of Internet access and sharing. We envision even small stores and tea shops selling Wi-Fi vouchers — ₹20 for an hour of high-speed 1 Gbps Internet — supporting students, professionals, and gig workers across the country.
-    </p>
-    <p class="text-gray-700 leading-relaxed mb-4">
-      Networkers Home is building the technologies and training behind this — from intelligent routers and edge firewalls to AI-powered network management systems. The mission is to make <strong>secure connectivity affordable and universal</strong>.
-    </p>
-    <p class="text-gray-700 leading-relaxed">
-      By combining hardware design, software innovation, and nationwide mentorship, NH aims to become India’s first truly integrated networking products and education company — rooted in Indian expertise, but designed for global impact.
-    </p>
-  </section>
+        <!-- Day 5 -->
+        <article class="card bg-white rounded-xl p-5 shadow-sm">
+          <h3 class="text-lg font-semibold mb-2">Day 5 — Proxies & Filtering</h3>
+          <ul class="text-sm space-y-2 text-slate-600">
+            <li>Forward, reverse, and auth proxies with Squid + Nginx</li>
+            <li>Basic load balancer (HAProxy / Nginx)</li>
+            <li>Deploy Pi-hole for DNS filtering and policies</li>
+            <li>Traffic inspection labs</li>
+          </ul>
+        </article>
+      </div>
+    </section>
 
-  <!-- Section: Closing -->
-  <section class="max-w-6xl mx-auto px-6 py-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl shadow-lg text-white mb-16">
-    <h2 class="text-3xl font-extrabold mb-4">Mentor’s Message to Students</h2>
-    <p class="text-white/90 leading-relaxed mb-4">
-      The future will not wait for big companies to decide what jobs remain. The next era belongs to builders — people who understand networks, automation, and AI deeply enough to design solutions that save time and money for others.
-    </p>
-    <p class="text-white/90 leading-relaxed mb-4">
-      As AI takes over routine tasks, the power shifts to those who can make systems talk to each other — securely, efficiently, and affordably. That is where Networkers Home students will lead.
-    </p>
-    <p class="text-white font-semibold text-lg mt-6">
-      <em>Let’s build the Internet of India — one city, one idea, one entrepreneur at a time.</em>
-    </p>
-  </section>
+    <!-- Week 2 -->
+    <section class="mb-10">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-2xl font-semibold">WEEK 2 — NETWORK SECURITY & EDGE CONNECTIVITY</h2>
+        <span class="text-sm text-slate-500">Days 6 — 10</span>
+      </div>
 
-  <footer class="text-center text-gray-500 text-sm pb-10">
-    © 2025 Networkers Home. All Rights Reserved.
-  </footer>
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <!-- Day 6 -->
+        <article class="card bg-white rounded-xl p-5 shadow-sm">
+          <h3 class="text-lg font-semibold mb-2">Day 6 — Firewalls and Network Rules</h3>
+          <ul class="text-sm space-y-2 text-slate-600">
+            <li>Install pfSense and OPNsense virtual firewalls</li>
+            <li>Configure NAT, ACLs, and stateful rules</li>
+            <li>Route and filter between internal/external segments</li>
+          </ul>
+        </article>
+
+        <!-- Day 7 -->
+        <article class="card bg-white rounded-xl p-5 shadow-sm">
+          <h3 class="text-lg font-semibold mb-2">Day 7 — Secure Access Overlay Networks</h3>
+          <ul class="text-sm space-y-2 text-slate-600">
+            <li>Deep dive: Tailscale, NetBird, Twingate</li>
+            <li>Compare ZTNA vs. traditional VPN</li>
+            <li>Build overlay network and access policies</li>
+          </ul>
+        </article>
+
+        <!-- Day 8 -->
+        <article class="card bg-white rounded-xl p-5 shadow-sm">
+          <h3 class="text-lg font-semibold mb-2">Day 8 — Cloud Networking (AWS)</h3>
+          <ul class="text-sm space-y-2 text-slate-600">
+            <li>AWS EC2 free-tier instance setup</li>
+            <li>Docker installation on EC2</li>
+            <li>Deploy network management containers (Portainer, Netdata)</li>
+            <li>Remote management via Tailscale/VPN tunnel</li>
+          </ul>
+        </article>
+
+        <!-- Day 9 -->
+        <article class="card bg-white rounded-xl p-5 shadow-sm">
+          <h3 class="text-lg font-semibold mb-2">Day 9 — Cloud Networking (Azure)</h3>
+          <ul class="text-sm space-y-2 text-slate-600">
+            <li>Azure VM provisioning</li>
+            <li>Mirror AWS tasks: Docker + Portainer + remote access</li>
+            <li>Compare VPC vs. VNet</li>
+            <li>Cloud-to-cloud peering overview</li>
+          </ul>
+        </article>
+
+        <!-- Day 10 -->
+        <article class="card bg-white rounded-xl p-5 shadow-sm">
+          <h3 class="text-lg font-semibold mb-2">Day 10 — Orchestration Platform</h3>
+          <ul class="text-sm space-y-2 text-slate-600">
+            <li>Install Cloudify (open-source) on Hostinger or local server</li>
+            <li>Manage multi-cloud deployments</li>
+            <li>Create basic topology and deployment blueprint</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- Week 3 -->
+    <section>
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-2xl font-semibold">WEEK 3 — NETWORK OPERATIONS & CYBERSECURITY</h2>
+        <span class="text-sm text-slate-500">Days 11 — 13</span>
+      </div>
+
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <!-- Day 11 -->
+        <article class="card bg-white rounded-xl p-5 shadow-sm">
+          <h3 class="text-lg font-semibold mb-2">Day 11 — NOC Monitoring</h3>
+          <ul class="text-sm space-y-2 text-slate-600">
+            <li>Deploy Prometheus, Grafana, and Netdata</li>
+            <li>SNMP and system metrics collection</li>
+            <li>Live dashboards for latency, CPU, and link health</li>
+            <li>Alerting and threshold rules</li>
+          </ul>
+        </article>
+
+        <!-- Day 12 -->
+        <article class="card bg-white rounded-xl p-5 shadow-sm">
+          <h3 class="text-lg font-semibold mb-2">Day 12 — SOC Monitoring</h3>
+          <ul class="text-sm space-y-2 text-slate-600">
+            <li>Deploy ELK (Elasticsearch, Logstash, Kibana) or Wazuh</li>
+            <li>Centralize logs from firewalls, proxies, servers</li>
+            <li>Security event correlation and detection rules</li>
+          </ul>
+        </article>
+
+        <!-- Day 13 -->
+        <article class="card bg-white rounded-xl p-5 shadow-sm">
+          <h3 class="text-lg font-semibold mb-2">Day 13 — ZTNA Labs</h3>
+          <p class="text-sm text-slate-600 mb-2">Four ZTNA use cases implemented with Tailscale ACLs + NetBird policies</p>
+          <ol class="list-decimal pl-5 text-sm text-slate-600 space-y-1">
+            <li>User-based access to internal app</li>
+            <li>Device trust with certificate authentication</li>
+            <li>Cloud resource restriction via identity provider</li>
+            <li>Access auditing and revocation</li>
+          </ol>
+        </article>
+      </div>
+    </section>
+
+    <footer class="mt-12 text-center text-sm text-slate-500">
+      <span>Prepared for SPARKS Internship. Days 14–20: add advanced automation, capstone, and assessment.</span>
+    </footer>
+  </div>
 </body>
 </html>
