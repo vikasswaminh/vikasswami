@@ -1,458 +1,208 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Network & DevOps Mentorship — 7 Weeks | Networkers Home</title>
-  <meta name="description" content="A 7-week mentorship for Network & DevOps engineers: firewalls, SD-WAN, ZTNA, Proxmox, Docker, Kubernetes basics, Zabbix/Grafana/Prometheus, Splunk, FortiNAC, IDS/IPS, and a real capstone hackathon."/>
-  <meta name="theme-color" content="#111827"/>
-
-  <!-- Tailwind v2.2.19 -->
-  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            manrope: ['Manrope', 'Lato', 'ui-sans-serif', 'system-ui'],
-            ibm: ['IBM Plex Sans', 'Lato', 'ui-sans-serif', 'system-ui'],
-            lato: ['Lato', 'ui-sans-serif', 'system-ui']
-          },
-          colors: {
-            brand: {
-              50:  '#eef2ff',
-              100: '#e0e7ff',
-              200: '#c7d2fe',
-              300: '#a5b4fc',
-              400: '#818cf8',
-              500: '#6366f1',
-              600: '#4f46e5',
-              700: '#4338ca',
-              800: '#3730a3',
-              900: '#312e81'
-            }
-          },
-          boxShadow: {
-            soft: '0 10px 25px rgba(0,0,0,0.08)'
-          }
-        }
-      }
-    }
-  </script>
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Manrope:wght@600;700;800&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SPARKS Internship — 3-Week Syllabus</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    /* Gradient rings (subtle 2025 vibe) */
-    .ring-bg {
-      background:
-        radial-gradient(1200px 600px at -10% -20%, rgba(99,102,241,0.18), transparent 60%),
-        radial-gradient(900px 500px at 110% 0%, rgba(236,72,153,0.12), transparent 60%),
-        radial-gradient(800px 400px at 20% 120%, rgba(16,185,129,0.12), transparent 60%);
+    /* subtle card border for light/dark */
+    .card {
+      border: 1px solid rgba(0,0,0,0.06);
+      backdrop-filter: blur(6px);
     }
-    .glass {
-      background: rgba(255,255,255,0.7);
-      -webkit-backdrop-filter: saturate(1.4) blur(8px);
-      backdrop-filter: saturate(1.4) blur(8px);
+    @media (prefers-color-scheme: dark) {
+      .card { border-color: rgba(255,255,255,0.06); }
     }
-    .gradient-cta { background-image: linear-gradient(90deg, #4f46e5 0%, #22c55e 100%); }
-    .gradient-card { background-image: linear-gradient(135deg, #ffffff 0%, #f5f7ff 100%); }
-    .tick:before { content: "✓"; margin-right: 8px; color: #10b981; }
-    .x:before { content: "✕"; margin-right: 8px; color: #ef4444; }
-    .faq-a { display: none; }
-    .faq-open .faq-a { display: block; }
   </style>
 </head>
+<body class="bg-gray-50 text-slate-800 antialiased">
+  <div class="max-w-6xl mx-auto px-6 py-10">
+    <header class="flex items-start justify-between gap-4 mb-8">
+      <div>
+        <h1 class="text-3xl font-extrabold tracking-tight">SPARKS Internship</h1>
+        <p class="mt-1 text-sm text-slate-500">End-to-end hands-on syllabus — Core networking, virtualization, cloud, security, and monitoring.</p>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="text-xs font-medium px-3 py-1 rounded-full bg-indigo-100 text-indigo-700">20-day program (Days 1–13 shown)</span>
+      </div>
+    </header>
 
-<body class="font-ibm text-gray-800 bg-gray-50 ring-bg">
-  <!-- Top Banner -->
-  <div class="w-full bg-gray-900 text-gray-100 text-sm">
-    <div class="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between">
-      <span>🚀 Admissions Open — 7-Week Network & DevOps Mentorship (Limited seats)</span>
-      <a href="#apply" class="underline hover:text-brand-300">Apply Now</a>
-    </div>
+    <!-- Week 1 -->
+    <section class="mb-10">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-2xl font-semibold">WEEK 1 — CORE NETWORKING & VIRTUALIZATION FOUNDATIONS</h2>
+        <span class="text-sm text-slate-500">Days 1 — 5</span>
+      </div>
+
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <!-- Day 1 -->
+        <article class="card bg-white rounded-xl p-5 shadow-sm">
+          <h3 class="text-lg font-semibold mb-2">Day 1 — Linux Access & Environment Setup</h3>
+          <ul class="text-sm space-y-2 text-slate-600">
+            <li>SSH fundamentals (key-based login, privilege separation)</li>
+            <li>Host access via SSH</li>
+            <li>VM provisioning (VirtualBox or KVM/QEMU)</li>
+            <li>Network config: static & dynamic IP</li>
+            <li>Basic Linux tools: <code>netstat</code>, <code>ss</code>, <code>ip</code>, <code>nmcli</code>, <code>systemctl</code></li>
+          </ul>
+        </article>
+
+        <!-- Day 2 -->
+        <article class="card bg-white rounded-xl p-5 shadow-sm">
+          <h3 class="text-lg font-semibold mb-2">Day 2 — Secure Remote Access</h3>
+          <ul class="text-sm space-y-2 text-slate-600">
+            <li>WireGuard site-to-site VPN setup</li>
+            <li>Install Windows VM + Ubuntu Core</li>
+            <li>Install Chrome on Ubuntu Core via Snap</li>
+            <li>Remote SSH using Tailscale mesh VPN</li>
+            <li>Cross-VM connectivity verification</li>
+          </ul>
+        </article>
+
+        <!-- Day 3 -->
+        <article class="card bg-white rounded-xl p-5 shadow-sm">
+          <h3 class="text-lg font-semibold mb-2">Day 3 — DNS and Containerization Basics</h3>
+          <ul class="text-sm space-y-2 text-slate-600">
+            <li>DNS lookup, records, resolution labs using Bind9 and <code>dig</code></li>
+            <li>Pod-based addressing and name resolution</li>
+            <li>Docker + LXC installation</li>
+            <li>Build 3 Docker containers and interconnect</li>
+            <li><code>docker-compose</code> orchestration basics</li>
+          </ul>
+        </article>
+
+        <!-- Day 4 -->
+        <article class="card bg-white rounded-xl p-5 shadow-sm">
+          <h3 class="text-lg font-semibold mb-2">Day 4 — Container OS and Management</h3>
+          <ul class="text-sm space-y-2 text-slate-600">
+            <li>Install Cosmos OS (LXC) environment</li>
+            <li>Deploy and manage containers via Portainer web UI</li>
+            <li>Configure container networking and persistent volumes</li>
+          </ul>
+        </article>
+
+        <!-- Day 5 -->
+        <article class="card bg-white rounded-xl p-5 shadow-sm">
+          <h3 class="text-lg font-semibold mb-2">Day 5 — Proxies & Filtering</h3>
+          <ul class="text-sm space-y-2 text-slate-600">
+            <li>Forward, reverse, and auth proxies with Squid + Nginx</li>
+            <li>Basic load balancer (HAProxy / Nginx)</li>
+            <li>Deploy Pi-hole for DNS filtering and policies</li>
+            <li>Traffic inspection labs</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- Week 2 -->
+    <section class="mb-10">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-2xl font-semibold">WEEK 2 — NETWORK SECURITY & EDGE CONNECTIVITY</h2>
+        <span class="text-sm text-slate-500">Days 6 — 10</span>
+      </div>
+
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <!-- Day 6 -->
+        <article class="card bg-white rounded-xl p-5 shadow-sm">
+          <h3 class="text-lg font-semibold mb-2">Day 6 — Firewalls and Network Rules</h3>
+          <ul class="text-sm space-y-2 text-slate-600">
+            <li>Install pfSense and OPNsense virtual firewalls</li>
+            <li>Configure NAT, ACLs, and stateful rules</li>
+            <li>Route and filter between internal/external segments</li>
+          </ul>
+        </article>
+
+        <!-- Day 7 -->
+        <article class="card bg-white rounded-xl p-5 shadow-sm">
+          <h3 class="text-lg font-semibold mb-2">Day 7 — Secure Access Overlay Networks</h3>
+          <ul class="text-sm space-y-2 text-slate-600">
+            <li>Deep dive: Tailscale, NetBird, Twingate</li>
+            <li>Compare ZTNA vs. traditional VPN</li>
+            <li>Build overlay network and access policies</li>
+          </ul>
+        </article>
+
+        <!-- Day 8 -->
+        <article class="card bg-white rounded-xl p-5 shadow-sm">
+          <h3 class="text-lg font-semibold mb-2">Day 8 — Cloud Networking (AWS)</h3>
+          <ul class="text-sm space-y-2 text-slate-600">
+            <li>AWS EC2 free-tier instance setup</li>
+            <li>Docker installation on EC2</li>
+            <li>Deploy network management containers (Portainer, Netdata)</li>
+            <li>Remote management via Tailscale/VPN tunnel</li>
+          </ul>
+        </article>
+
+        <!-- Day 9 -->
+        <article class="card bg-white rounded-xl p-5 shadow-sm">
+          <h3 class="text-lg font-semibold mb-2">Day 9 — Cloud Networking (Azure)</h3>
+          <ul class="text-sm space-y-2 text-slate-600">
+            <li>Azure VM provisioning</li>
+            <li>Mirror AWS tasks: Docker + Portainer + remote access</li>
+            <li>Compare VPC vs. VNet</li>
+            <li>Cloud-to-cloud peering overview</li>
+          </ul>
+        </article>
+
+        <!-- Day 10 -->
+        <article class="card bg-white rounded-xl p-5 shadow-sm">
+          <h3 class="text-lg font-semibold mb-2">Day 10 — Orchestration Platform</h3>
+          <ul class="text-sm space-y-2 text-slate-600">
+            <li>Install Cloudify (open-source) on Hostinger or local server</li>
+            <li>Manage multi-cloud deployments</li>
+            <li>Create basic topology and deployment blueprint</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- Week 3 -->
+    <section>
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-2xl font-semibold">WEEK 3 — NETWORK OPERATIONS & CYBERSECURITY</h2>
+        <span class="text-sm text-slate-500">Days 11 — 13</span>
+      </div>
+
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <!-- Day 11 -->
+        <article class="card bg-white rounded-xl p-5 shadow-sm">
+          <h3 class="text-lg font-semibold mb-2">Day 11 — NOC Monitoring</h3>
+          <ul class="text-sm space-y-2 text-slate-600">
+            <li>Deploy Prometheus, Grafana, and Netdata</li>
+            <li>SNMP and system metrics collection</li>
+            <li>Live dashboards for latency, CPU, and link health</li>
+            <li>Alerting and threshold rules</li>
+          </ul>
+        </article>
+
+        <!-- Day 12 -->
+        <article class="card bg-white rounded-xl p-5 shadow-sm">
+          <h3 class="text-lg font-semibold mb-2">Day 12 — SOC Monitoring</h3>
+          <ul class="text-sm space-y-2 text-slate-600">
+            <li>Deploy ELK (Elasticsearch, Logstash, Kibana) or Wazuh</li>
+            <li>Centralize logs from firewalls, proxies, servers</li>
+            <li>Security event correlation and detection rules</li>
+          </ul>
+        </article>
+
+        <!-- Day 13 -->
+        <article class="card bg-white rounded-xl p-5 shadow-sm">
+          <h3 class="text-lg font-semibold mb-2">Day 13 — ZTNA Labs</h3>
+          <p class="text-sm text-slate-600 mb-2">Four ZTNA use cases implemented with Tailscale ACLs + NetBird policies</p>
+          <ol class="list-decimal pl-5 text-sm text-slate-600 space-y-1">
+            <li>User-based access to internal app</li>
+            <li>Device trust with certificate authentication</li>
+            <li>Cloud resource restriction via identity provider</li>
+            <li>Access auditing and revocation</li>
+          </ol>
+        </article>
+      </div>
+    </section>
+
+    <footer class="mt-12 text-center text-sm text-slate-500">
+      <span>Prepared for SPARKS Internship. Days 14–20: add advanced automation, capstone, and assessment.</span>
+    </footer>
   </div>
-
-  <!-- Header -->
-  <header class="bg-white shadow-md sticky top-0 z-40">
-    <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-      <a href="#" class="text-xl font-extrabold font-manrope text-gray-900">Networkers Home</a>
-      <nav class="hidden md:flex items-center space-x-8">
-        <a href="#about" class="hover:text-brand-600">About</a>
-        <a href="#syllabus" class="hover:text-brand-600">Syllabus</a>
-        <a href="#mentors" class="hover:text-brand-600">Mentors</a>
-        <a href="#pricing" class="hover:text-brand-600">Pricing</a>
-        <a href="#faq" class="hover:text-brand-600">FAQ</a>
-        <a href="#apply" class="inline-flex items-center bg-gray-900 text-white px-4 py-2 rounded-md hover:bg-black">Apply</a>
-      </nav>
-      <button id="mnav" class="md:hidden inline-flex items-center px-3 py-2 border rounded text-gray-700 border-gray-300">Menu</button>
-    </div>
-    <div id="mwrap" class="md:hidden hidden border-t bg-white">
-      <nav class="px-4 py-3 space-y-2">
-        <a href="#about" class="block">About</a>
-        <a href="#syllabus" class="block">Syllabus</a>
-        <a href="#mentors" class="block">Mentors</a>
-        <a href="#pricing" class="block">Pricing</a>
-        <a href="#faq" class="block">FAQ</a>
-        <a href="#apply" class="block font-medium text-white bg-gray-900 px-3 py-2 rounded-md">Apply</a>
-      </nav>
-    </div>
-  </header>
-
-  <!-- Hero -->
-  <section id="about" class="relative">
-    <div class="max-w-7xl mx-auto px-4 py-12 md:py-16 grid md:grid-cols-2 gap-10 items-center">
-      <div>
-        <h1 class="font-manrope text-4xl md:text-5xl leading-tight font-extrabold text-gray-900">
-          Network & DevOps Mentorship — 7 Weeks of Real Infrastructure
-        </h1>
-        <p class="mt-4 text-gray-700">
-          Build, secure, and monitor a production-style hybrid network: pfSense/OPNsense, FortiGate SD-WAN, Proxmox, Docker, Zabbix/Grafana/Prometheus, Splunk, Tailscale/Twingate, FortiNAC, IDS/IPS — and finish with a real capstone hackathon.
-        </p>
-        <div class="mt-6 flex flex-wrap items-center space-x-3">
-          <span class="inline-flex items-center px-3 py-1 text-xs font-semibold rounded-full bg-brand-100 text-brand-700">Mentor-led</span>
-          <span class="inline-flex items-center px-3 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-700">Hands-on Pods</span>
-          <span class="inline-flex items-center px-3 py-1 text-xs font-semibold rounded-full bg-pink-100 text-pink-700">Placement-oriented</span>
-        </div>
-        <div class="mt-8 flex flex-wrap gap-3">
-          <a href="#apply" class="inline-flex items-center px-6 py-3 text-white rounded-md gradient-cta shadow-soft hover:opacity-95">Apply for Next Cohort</a>
-          <a href="#syllabus" class="inline-flex items-center px-6 py-3 bg-white border border-gray-300 rounded-md hover:bg-gray-50">See Full Syllabus</a>
-        </div>
-        <p class="mt-4 text-xs text-gray-500">Cohorts start every month · 1 mentor : 10 students · 2 live sessions/week</p>
-      </div>
-      <div class="relative">
-        <div class="gradient-card rounded-2xl shadow-soft p-6">
-          <div class="grid grid-cols-2 gap-4">
-            <div class="p-4 bg-white rounded-xl border">
-              <p class="text-xs text-gray-500">Firewalls</p>
-              <p class="font-manrope font-bold text-lg">pfSense · FortiGate</p>
-            </div>
-            <div class="p-4 bg-white rounded-xl border">
-              <p class="text-xs text-gray-500">Cloud + ZTNA</p>
-              <p class="font-manrope font-bold text-lg">AWS · Tailscale</p>
-            </div>
-            <div class="p-4 bg-white rounded-xl border">
-              <p class="text-xs text-gray-500">Observability</p>
-              <p class="font-manrope font-bold text-lg">Grafana · Splunk</p>
-            </div>
-            <div class="p-4 bg-white rounded-xl border">
-              <p class="text-xs text-gray-500">Automation</p>
-              <p class="font-manrope font-bold text-lg">Bash · Python</p>
-            </div>
-          </div>
-          <ul class="mt-5 text-sm space-y-2">
-            <li class="tick">Dual-ISP SD-WAN with failover</li>
-            <li class="tick">Proxmox virtual lab networking</li>
-            <li class="tick">SOC alerts & incident drill</li>
-            <li class="tick">Capstone hackathon with review</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Outcomes -->
-  <section class="py-10">
-    <div class="max-w-7xl mx-auto px-4">
-      <h2 class="font-manrope text-2xl md:text-3xl font-extrabold text-gray-900">What you’ll ship in 7 weeks</h2>
-      <div class="mt-6 grid md:grid-cols-3 gap-6">
-        <div class="glass rounded-xl p-6 border">
-          <h3 class="font-manrope font-bold text-lg">Production-style Topology</h3>
-          <p class="mt-2 text-sm text-gray-700">On-prem + AWS hybrid with ZTNA, SD-WAN, monitoring, and logs.</p>
-        </div>
-        <div class="glass rounded-xl p-6 border">
-          <h3 class="font-manrope font-bold text-lg">SOC Dashboard & Playbook</h3>
-          <p class="mt-2 text-sm text-gray-700">Grafana + Splunk alerts, incident notes, and response steps.</p>
-        </div>
-        <div class="glass rounded-xl p-6 border">
-          <h3 class="font-manrope font-bold text-lg">Mentor-signed Project</h3>
-          <p class="mt-2 text-sm text-gray-700">Reviewed configs, screenshots, and a concise architecture report.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Mentors -->
-  <section id="mentors" class="py-10 bg-white">
-    <div class="max-w-7xl mx-auto px-4">
-      <div class="flex items-end justify-between">
-        <h2 class="font-manrope text-2xl md:text-3xl font-extrabold text-gray-900">Mentors</h2>
-        <a href="#apply" class="text-sm text-brand-700 hover:text-brand-900">Become a mentor →</a>
-      </div>
-      <div class="mt-6 grid md:grid-cols-3 gap-6">
-        <div class="rounded-xl border bg-white p-6 shadow-sm">
-          <p class="text-xs text-gray-500">Firewall & SD-WAN</p>
-          <h3 class="font-manrope font-bold text-lg">Senior Network Architect</h3>
-          <p class="text-sm mt-2 text-gray-700">FortiGate, pfSense/OPNsense, micro-segmentation, multi-ISP.</p>
-        </div>
-        <div class="rounded-xl border bg-white p-6 shadow-sm">
-          <p class="text-xs text-gray-500">Cloud & ZTNA</p>
-          <h3 class="font-manrope font-bold text-lg">Cloud Security Engineer</h3>
-          <p class="text-sm mt-2 text-gray-700">AWS VPC, OpenVPN, Tailscale ACLs, Zero-Trust rollout.</p>
-        </div>
-        <div class="rounded-xl border bg-white p-6 shadow-sm">
-          <p class="text-xs text-gray-500">Observability & SOC</p>
-          <h3 class="font-manrope font-bold text-lg">DevSecOps Lead</h3>
-          <p class="text-sm mt-2 text-gray-700">Zabbix/Grafana/Prometheus, Splunk, incident response.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Syllabus (Accordion) -->
-  <section id="syllabus" class="py-12">
-    <div class="max-w-7xl mx-auto px-4">
-      <h2 class="font-manrope text-2xl md:text-3xl font-extrabold text-gray-900">7-Week Syllabus</h2>
-      <p class="mt-2 text-gray-600 text-sm">Two live sessions per week (concept + review) · 5–10 lab hours weekly.</p>
-
-      <div class="mt-6 space-y-3">
-        <!-- Week 1 -->
-        <details class="group bg-white border rounded-lg shadow-sm">
-          <summary class="cursor-pointer list-none px-5 py-4 flex justify-between items-center">
-            <span class="font-semibold">Week 1 — pfSense, OPNsense & FortiGate Firewalls</span>
-            <span class="text-gray-400 group-open:transform group-open:rotate-90">›</span>
-          </summary>
-          <div class="px-5 pb-5 text-sm text-gray-700 space-y-2">
-            <p><strong>Concepts:</strong> NAT, stateful policies, PBR, IPsec/SSL-VPN, dual-ISP SD-WAN.</p>
-            <p><strong>Labs:</strong> pfSense/OPNsense VMs, DMZ, ACLs, FortiGate SD-WAN, forward/reverse proxy.</p>
-            <p><strong>Outcome:</strong> Multi-WAN firewall with enforceable policy sets.</p>
-          </div>
-        </details>
-        <!-- Week 2 -->
-        <details class="group bg-white border rounded-lg shadow-sm">
-          <summary class="cursor-pointer list-none px-5 py-4 flex justify-between items-center">
-            <span class="font-semibold">Week 2 — Virtualization & Infrastructure Automation</span>
-            <span class="text-gray-400 group-open:transform group-open:rotate-90">›</span>
-          </summary>
-          <div class="px-5 pb-5 text-sm text-gray-700 space-y-2">
-            <p><strong>Concepts:</strong> Proxmox, bridges/VLANs, templates/snapshots, Bash automation.</p>
-            <p><strong>Labs:</strong> Proxmox cluster, scripted VM deploys, virtual LAN interconnects.</p>
-            <p><strong>Outcome:</strong> Reliable virtual underlay for repeatable labs.</p>
-          </div>
-        </details>
-        <!-- Week 3 -->
-        <details class="group bg-white border rounded-lg shadow-sm">
-          <summary class="cursor-pointer list-none px-5 py-4 flex justify-between items-center">
-            <span class="font-semibold">Week 3 — Containers & Observability</span>
-            <span class="text-gray-400 group-open:transform group-open:rotate-90">›</span>
-          </summary>
-          <div class="px-5 pb-5 text-sm text-gray-700 space-y-2">
-            <p><strong>Concepts:</strong> Docker/Compose, container networking/volumes, K8s basics.</p>
-            <p><strong>Labs:</strong> Grafana + Prometheus + Node Exporter, firewall metrics dashboards.</p>
-            <p><strong>Outcome:</strong> Monitored container stack with clear service health.</p>
-          </div>
-        </details>
-        <!-- Week 4 -->
-        <details class="group bg-white border rounded-lg shadow-sm">
-          <summary class="cursor-pointer list-none px-5 py-4 flex justify-between items-center">
-            <span class="font-semibold">Week 4 — Monitoring & Security Analytics</span>
-            <span class="text-gray-400 group-open:transform group-open:rotate-90">›</span>
-          </summary>
-          <div class="px-5 pb-5 text-sm text-gray-700 space-y-2">
-            <p><strong>Concepts:</strong> Zabbix, triggers/escalations, Splunk ingestion & search.</p>
-            <p><strong>Labs:</strong> Network device metrics, Grafana traffic/latency boards, Splunk pipeline.</p>
-            <p><strong>Outcome:</strong> Metrics + logs tied to a single operational view.</p>
-          </div>
-        </details>
-        <!-- Week 5 -->
-        <details class="group bg-white border rounded-lg shadow-sm">
-          <summary class="cursor-pointer list-none px-5 py-4 flex justify-between items-center">
-            <span class="font-semibold">Week 5 — Cloud Networking & Zero-Trust Access</span>
-            <span class="text-gray-400 group-open:transform group-open:rotate-90">›</span>
-          </summary>
-          <div class="px-5 pb-5 text-sm text-gray-700 space-y-2">
-            <p><strong>Concepts:</strong> AWS VPC/subnets, IGW/NAT, EC2 SG/IAM, ZTNA (Tailscale/Twingate).</p>
-            <p><strong>Labs:</strong> OpenVPN on EC2, on-prem ↔ cloud via ZTNA, ACL-based user/device limits.</p>
-            <p><strong>Outcome:</strong> Secure hybrid connectivity enforceable per identity.</p>
-          </div>
-        </details>
-        <!-- Week 6 -->
-        <details class="group bg-white border rounded-lg shadow-sm">
-          <summary class="cursor-pointer list-none px-5 py-4 flex justify-between items-center">
-            <span class="font-semibold">Week 6 — SOC Monitoring & Automation</span>
-            <span class="text-gray-400 group-open:transform group-open:rotate-90">›</span>
-          </summary>
-          <div class="px-5 pb-5 text-sm text-gray-700 space-y-2">
-            <p><strong>Concepts:</strong> Syslog → detection → response, alert logic, Python for backups.</p>
-            <p><strong>Labs:</strong> FortiGate/pfSense → Splunk, Grafana threat alerts, Python config backup.</p>
-            <p><strong>Outcome:</strong> Mini-SOC with repeatable automation.</p>
-          </div>
-        </details>
-        <!-- Week 7 -->
-        <details class="group bg-white border rounded-lg shadow-sm">
-          <summary class="cursor-pointer list-none px-5 py-4 flex justify-between items-center">
-            <span class="font-semibold">Week 7 — FortiNAC / IDS-IPS / Final Hackathon</span>
-            <span class="text-gray-400 group-open:transform group-open:rotate-90">›</span>
-          </summary>
-          <div class="px-5 pb-5 text-sm text-gray-700 space-y-2">
-            <p><strong>Concepts:</strong> NAC posture/profile, Suricata/Snort tuning, incident workflow.</p>
-            <p><strong>Labs:</strong> FortiNAC with FortiGate, detect/contain simulated intrusion, presentation.</p>
-            <p><strong>Capstone:</strong> Secure Hybrid Enterprise Network — diagram, configs, logs, SOC report.</p>
-          </div>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <!-- Pricing -->
-  <section id="pricing" class="py-12 bg-white">
-    <div class="max-w-7xl mx-auto px-4">
-      <h2 class="font-manrope text-2xl md:text-3xl font-extrabold text-gray-900">Pricing</h2>
-      <div class="mt-6 grid md:grid-cols-2 gap-6">
-        <!-- Standard -->
-        <div class="rounded-2xl border shadow-soft bg-white p-6">
-          <h3 class="font-manrope font-extrabold text-xl">Standard Mentorship</h3>
-          <p class="text-gray-500 mt-1">7 Weeks · Group feedback · Full lab access</p>
-          <div class="mt-4 flex items-end">
-            <span class="text-3xl font-extrabold">₹9,999</span>
-            <span class="ml-2 text-sm text-gray-500">/ cohort</span>
-          </div>
-          <ul class="mt-4 text-sm space-y-2">
-            <li class="tick">2 live sessions/week</li>
-            <li class="tick">Dedicated pods (timed)</li>
-            <li class="tick">Capstone review</li>
-            <li class="x text-gray-500">1-on-1 mock interview</li>
-            <li class="x text-gray-500">Placement prep pack</li>
-          </ul>
-          <a href="#apply" class="mt-6 inline-flex w-full justify-center gradient-cta text-white py-3 rounded-md">Join Standard</a>
-        </div>
-        <!-- Premium -->
-        <div class="rounded-2xl border-2 border-brand-500 shadow-soft bg-white p-6 relative">
-          <span class="absolute -top-3 right-6 bg-brand-600 text-white text-xs px-3 py-1 rounded-full">Most Popular</span>
-          <h3 class="font-manrope font-extrabold text-xl">Premium Track</h3>
-          <p class="text-gray-500 mt-1">7 Weeks · 1-on-1 support · Placement prep</p>
-          <div class="mt-4 flex items-end">
-            <span class="text-3xl font-extrabold">₹14,999</span>
-            <span class="ml-2 text-sm text-gray-500">/ cohort</span>
-          </div>
-          <ul class="mt-4 text-sm space-y-2">
-            <li class="tick">Everything in Standard</li>
-            <li class="tick">1-on-1 mock interview</li>
-            <li class="tick">Resume & project review</li>
-            <li class="tick">Placement prep pack</li>
-          </ul>
-          <a href="#apply" class="mt-6 inline-flex w-full justify-center gradient-cta text-white py-3 rounded-md">Join Premium</a>
-        </div>
-      </div>
-      <p class="mt-4 text-xs text-gray-500">Revenue share for mentors: 50–60% per batch (internal).</p>
-    </div>
-  </section>
-
-  <!-- How it works -->
-  <section class="py-12">
-    <div class="max-w-7xl mx-auto px-4">
-      <h2 class="font-manrope text-2xl md:text-3xl font-extrabold text-gray-900">How it works</h2>
-      <div class="mt-6 grid md:grid-cols-4 gap-6">
-        <div class="glass p-5 rounded-xl border">
-          <h3 class="font-semibold">1) Apply</h3>
-          <p class="text-sm mt-1 text-gray-700">Verify basics (CCNA-level). Pick Standard or Premium.</p>
-        </div>
-        <div class="glass p-5 rounded-xl border">
-          <h3 class="font-semibold">2) Onboard</h3>
-          <p class="text-sm mt-1 text-gray-700">Get portal access, pod schedule, and cohort calendar.</p>
-        </div>
-        <div class="glass p-5 rounded-xl border">
-          <h3 class="font-semibold">3) Build</h3>
-          <p class="text-sm mt-1 text-gray-700">Live concept + guided lab → weekly reviews and fixes.</p>
-        </div>
-        <div class="glass p-5 rounded-xl border">
-          <h3 class="font-semibold">4) Ship</h3>
-          <p class="text-sm mt-1 text-gray-700">Capstone, mentor sign-off, and placement readiness.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section id="faq" class="py-12 bg-white">
-    <div class="max-w-7xl mx-auto px-4">
-      <h2 class="font-manrope text-2xl md:text-3xl font-extrabold text-gray-900">FAQs</h2>
-      <div class="mt-6 space-y-3">
-        <div class="border rounded-lg p-5 faq">
-          <button class="w-full text-left font-semibold flex justify-between items-center faq-q">
-            <span>Who is this for?</span><span>+</span>
-          </button>
-          <div class="faq-a mt-3 text-sm text-gray-700">Final year students, freshers, and working engineers aiming for security/DevOps roles.</div>
-        </div>
-        <div class="border rounded-lg p-5 faq">
-          <button class="w-full text-left font-semibold flex justify-between items-center faq-q">
-            <span>Do I need prior experience?</span><span>+</span>
-          </button>
-          <div class="faq-a mt-3 text-sm text-gray-700">CCNA-level basics help. We teach everything else hands-on.</div>
-        </div>
-        <div class="border rounded-lg p-5 faq">
-          <button class="w-full text-left font-semibold flex justify-between items-center faq-q">
-            <span>What do I get at the end?</span><span>+</span>
-          </button>
-          <div class="faq-a mt-3 text-sm text-gray-700">Mentor-signed capstone report, certificate, and placement preparation (Premium).</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section id="apply" class="py-14">
-    <div class="max-w-7xl mx-auto px-4">
-      <div class="rounded-2xl gradient-card p-8 md:p-10 shadow-soft flex flex-col md:flex-row md:items-center md:justify-between">
-        <div>
-          <h3 class="font-manrope text-2xl md:text-3xl font-extrabold text-gray-900">Ready to build a real network, not a demo?</h3>
-          <p class="mt-2 text-gray-700">Next cohort starts soon. Limited to 10 learners per mentor.</p>
-        </div>
-        <a href="#" class="mt-5 md:mt-0 inline-flex items-center px-6 py-3 text-white rounded-md gradient-cta shadow-soft">Apply Now</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="bg-gray-900 text-gray-300">
-    <div class="max-w-7xl mx-auto px-4 py-10 grid md:grid-cols-4 gap-8">
-      <div>
-        <h4 class="font-manrope font-extrabold text-white">Networkers Home</h4>
-        <p class="mt-2 text-sm text-gray-400">Real labs. Real mentors. Real outcomes.</p>
-      </div>
-      <div>
-        <h5 class="font-semibold text-white">Program</h5>
-        <ul class="mt-2 text-sm space-y-2">
-          <li><a href="#syllabus" class="hover:text-white">Syllabus</a></li>
-          <li><a href="#mentors" class="hover:text-white">Mentors</a></li>
-          <li><a href="#pricing" class="hover:text-white">Pricing</a></li>
-        </ul>
-      </div>
-      <div>
-        <h5 class="font-semibold text-white">Company</h5>
-        <ul class="mt-2 text-sm space-y-2">
-          <li><a href="#" class="hover:text-white">About</a></li>
-          <li><a href="#" class="hover:text-white">Contact</a></li>
-          <li><a href="#" class="hover:text-white">Terms</a></li>
-        </ul>
-      </div>
-      <div>
-        <h5 class="font-semibold text-white">Get Started</h5>
-        <a href="#apply" class="inline-flex mt-3 items-center px-4 py-2 bg-white text-gray-900 rounded-md">Apply</a>
-      </div>
-    </div>
-    <div class="border-t border-gray-800">
-      <div class="max-w-7xl mx-auto px-4 py-4 text-xs text-gray-500">
-        © 2025 Networkers Home. All rights reserved.
-      </div>
-    </div>
-  </footer>
-
-  <!-- Minimal JS -->
-  <script>
-    // Mobile nav
-    document.getElementById('mnav').addEventListener('click', () => {
-      const m = document.getElementById('mwrap');
-      m.classList.toggle('hidden');
-    });
-
-    // FAQ toggles
-    document.querySelectorAll('.faq').forEach((el) => {
-      const btn = el.querySelector('.faq-q');
-      btn.addEventListener('click', () => {
-        el.classList.toggle('faq-open');
-      });
-    });
-  </script>
 </body>
 </html>
