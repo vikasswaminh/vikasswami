@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>30-Day Networking Devices Course</title>
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --muted:#98a0b3;
+      --accent:#4fd1c5;
+      --glass: rgba(255,255,255,0.03);
+      --radius:12px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color-snow: #e6eef6;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:
+        radial-gradient(800px 400px at 10% 10%, rgba(79,209,197,0.06), transparent 8%),
+        radial-gradient(700px 300px at 90% 90%, rgba(99,102,241,0.04), transparent 8%),
+        var(--bg);
+      color:var(--color, #e6eef6);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:28px;
+    }
+
+    .container{
+      max-width:1100px;
+      margin:0 auto;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:16px;
+      padding:22px;
+      box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+      border: 1px solid rgba(255,255,255,0.03);
+    }
+
+    header{
+      display:flex;
+      gap:16px;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:18px;
+    }
+
+    .title {
+      display:flex;
+      gap:14px;
+      align-items:center;
+    }
+    .logo{
+      width:56px;
+      height:56px;
+      background:linear-gradient(135deg,var(--accent),#6b46c1);
+      border-radius:12px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:700;
+      color:#042021;
+      box-shadow:0 6px 18px rgba(79,209,197,0.08);
+      flex:0 0 56px;
+    }
+    h1{
+      margin:0;
+      font-size:18px;
+      letter-spacing:0.2px;
+      color:#e7eef6;
+    }
+    p.lead{margin:0;color:var(--muted);font-size:13px}
+
+    .controls{
+      display:flex;
+      gap:8px;
+      align-items:center;
+    }
+    .search{
+      background:var(--glass);
+      border:1px solid rgba(255,255,255,0.03);
+      color:var(--muted);
+      padding:8px 12px;
+      border-radius:10px;
+      min-width:220px;
+    }
+    .btn{
+      background:linear-gradient(90deg,#111827, #0b1220);
+      color:var(--accent);
+      border:1px solid rgba(79,209,197,0.08);
+      padding:8px 12px;
+      border-radius:10px;
+      cursor:pointer;
+      font-weight:600;
+      font-size:13px;
+    }
+
+    .weeks{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:14px;
+      margin-top:18px;
+    }
+
+    .week{
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
+      border-radius:var(--radius);
+      padding:14px;
+      border:1px solid rgba(255,255,255,0.02);
+      display:grid;
+      gap:12px;
+    }
+
+    .week-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+    }
+    .week-title{
+      font-weight:700;
+      color:#eef7fb;
+      font-size:15px;
+    }
+    .week-sub{
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .days{
+      display:grid;
+      grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+      gap:12px;
+    }
+
+    .day-card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
+      padding:12px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.02);
+      box-shadow: 0 6px 18px rgba(2,6,23,0.45);
+      transition:transform .16s ease, box-shadow .16s ease;
+      min-height:72px;
+    }
+    .day-card:hover{transform:translateY(-4px);box-shadow:0 18px 36px rgba(2,6,23,0.6)}
+    .day-title{font-weight:700;color:#dbf6f0;margin-bottom:6px;font-size:14px}
+    .day-desc{color:var(--muted);font-size:13px;white-space:pre-wrap}
+
+    .footer{
+      margin-top:18px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    /* small screens */
+    @media (max-width:640px){
+      .controls{flex-direction:column;align-items:stretch}
+      .search{width:100%}
+      header{gap:12px}
+    }
+
+    /* highlight for search results */
+    .match{outline:2px solid rgba(79,209,197,0.12); box-shadow:0 10px 32px rgba(79,209,197,0.04) !important}
+    .hidden{display:none !important}
+    /* print */
+    @media print{
+      body{background:white;color:#000}
+      .container{box-shadow:none;border:none;background:transparent;padding:6mm}
+      .controls, .footer, header .controls {display:none}
+      .day-card{box-shadow:none;border:1px solid #ddd}
+    }
+  </style>
+</head>
+<body>
+  <main class="container" role="main" aria-labelledby="main-title">
+    <header>
+      <div class="title">
+        <div class="logo">ND</div>
+        <div>
+          <h1 id="main-title">30-Day Networking Devices Course</h1>
+          <p class="lead">Exact schedule. Content unchanged.</p>
+        </div>
+      </div>
+
+      <div class="controls" aria-hidden="false">
+        <input id="search" class="search" placeholder="Filter days (e.g., 'Firewall', 'BGP')" aria-label="Filter days"/>
+        <button id="printBtn" class="btn" title="Print or save as PDF">Print / PDF</button>
+      </div>
+    </header>
+
+    <section class="weeks" id="weeks">
+      <!-- Week 1 -->
+      <section class="week" data-week="1" aria-labelledby="w1title">
+        <div class="week-head">
+          <div>
+            <div id="w1title" class="week-title">Week 1 – Core Networking Devices (Foundations)</div>
+            <div class="week-sub">Days 1–7</div>
+          </div>
+        </div>
+
+        <div class="days">
+          <article class="day-card" data-day="1">
+            <div class="day-title">Day 1</div>
+            <div class="day-desc">Overview of Network Devices &amp; OSI Layer Mapping</div>
+          </article>
+
+          <article class="day-card" data-day="2">
+            <div class="day-title">Day 2</div>
+            <div class="day-desc">Hub, Bridge, and Repeater – Legacy Devices and Why They Matter</div>
+          </article>
+
+          <article class="day-card" data-day="3">
+            <div class="day-title">Day 3</div>
+            <div class="day-desc">Network Switch (Enterprise Level) – Layer 2 &amp; Layer 3 Switching</div>
+          </article>
+
+          <article class="day-card" data-day="4">
+            <div class="day-title">Day 4</div>
+            <div class="day-desc">Data Center Switches – High-Performance Switching &amp; Spine-Leaf Architecture</div>
+          </article>
+
+          <article class="day-card" data-day="5">
+            <div class="day-title">Day 5</div>
+            <div class="day-desc">Enterprise Router – WAN Routing, Protocols (OSPF, BGP), and Redundancy</div>
+          </article>
+
+          <article class="day-card" data-day="6">
+            <div class="day-title">Day 6</div>
+            <div class="day-desc">Telecom / ISP Router – MPLS, BGP Peering, and Carrier-Grade Features</div>
+          </article>
+
+          <article class="day-card" data-day="7">
+            <div class="day-title">Day 7</div>
+            <div class="day-desc">Load Balancers (Hardware + Software) – Layer 4 vs Layer 7 Load Balancing</div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Week 2 -->
+      <section class="week" data-week="2" aria-labelledby="w2title">
+        <div class="week-head">
+          <div>
+            <div id="w2title" class="week-title">Week 2 – Network Security Devices</div>
+            <div class="week-sub">Days 8–14</div>
+          </div>
+        </div>
+
+        <div class="days">
+          <article class="day-card" data-day="8">
+            <div class="day-title">Day 8</div>
+            <div class="day-desc">Traditional Firewall – Stateful Inspection &amp; Packet Filtering</div>
+          </article>
+
+          <article class="day-card" data-day="9">
+            <div class="day-title">Day 9</div>
+            <div class="day-desc">Next-Generation Firewall (NGFW) – Deep Packet Inspection, IDS/IPS Integration</div>
+          </article>
+
+          <article class="day-card" data-day="10">
+            <div class="day-title">Day 10</div>
+            <div class="day-desc">Web Application Firewall (WAF) – Protecting HTTP/HTTPS Apps</div>
+          </article>
+
+          <article class="day-card" data-day="11">
+            <div class="day-title">Day 11</div>
+            <div class="day-desc">Intrusion Detection and Prevention Systems (IDS/IPS) – Network Threat Detection</div>
+          </article>
+
+          <article class="day-card" data-day="12">
+            <div class="day-title">Day 12</div>
+            <div class="day-desc">Unified Threat Management (UTM) – All-in-One Security Devices</div>
+          </article>
+
+          <article class="day-card" data-day="13">
+            <div class="day-title">Day 13</div>
+            <div class="day-desc">Email Security Gateways – Anti-Phishing, Spam, and Malware Filtering</div>
+          </article>
+
+          <article class="day-card" data-day="14">
+            <div class="day-title">Day 14</div>
+            <div class="day-desc">DDoS Protection Systems – Network and Application Layer Defense</div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Week 3 -->
+      <section class="week" data-week="3" aria-labelledby="w3title">
+        <div class="week-head">
+          <div>
+            <div id="w3title" class="week-title">Week 3 – Virtualization, Cloud &amp; Network Functions</div>
+            <div class="week-sub">Days 15–21</div>
+          </div>
+        </div>
+
+        <div class="days">
+          <article class="day-card" data-day="15">
+            <div class="day-title">Day 15</div>
+            <div class="day-desc">Network Virtualization (NFV &amp; SDN) – Virtualizing Network Services</div>
+          </article>
+
+          <article class="day-card" data-day="16">
+            <div class="day-title">Day 16</div>
+            <div class="day-desc">Virtual Routers and Virtual Firewalls – Cloud-Based Security Infrastructure</div>
+          </article>
+
+          <article class="day-card" data-day="17">
+            <div class="day-title">Day 17</div>
+            <div class="day-desc">Hypervisors &amp; Virtual Switches (vSwitch, DVS) – Virtual Network Fabric</div>
+          </article>
+
+          <article class="day-card" data-day="18">
+            <div class="day-title">Day 18</div>
+            <div class="day-desc">Cloud Load Balancers (AWS ELB, Azure ALB, GCP) – Elastic Scaling</div>
+          </article>
+
+          <article class="day-card" data-day="19">
+            <div class="day-title">Day 19</div>
+            <div class="day-desc">VPN Concentrators – Secure Remote Access and Site-to-Site Tunnels</div>
+          </article>
+
+          <article class="day-card" data-day="20">
+            <div class="day-title">Day 20</div>
+            <div class="day-desc">Proxy Servers and Secure Web Gateways (SWG) – Traffic Filtering and Monitoring</div>
+          </article>
+
+          <article class="day-card" data-day="21">
+            <div class="day-title">Day 21</div>
+            <div class="day-desc">SD-WAN Devices – Intelligent WAN Optimization and Cloud Connectivity</div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Week 4 -->
+      <section class="week" data-week="4" aria-labelledby="w4title">
+        <div class="week-head">
+          <div>
+            <div id="w4title" class="week-title">Week 4 – Advanced Network Infrastructure</div>
+            <div class="week-sub">Days 22–30</div>
+          </div>
+        </div>
+
+        <div class="days">
+          <article class="day-card" data-day="22">
+            <div class="day-title">Day 22</div>
+            <div class="day-desc">WAN Optimization Controllers – Improving WAN Performance</div>
+          </article>
+
+          <article class="day-card" data-day="23">
+            <div class="day-title">Day 23</div>
+            <div class="day-desc">Wireless LAN Controllers (WLC) – Centralized Wi-Fi Management</div>
+          </article>
+
+          <article class="day-card" data-day="24">
+            <div class="day-title">Day 24</div>
+            <div class="day-desc">Network Access Control (NAC) Appliances – Authentication and Policy Enforcement</div>
+          </article>
+
+          <article class="day-card" data-day="25">
+            <div class="day-title">Day 25</div>
+            <div class="day-desc">DNS/DHCP/IPAM (DDI) Systems – Core Network Services Automation</div>
+          </article>
+
+          <article class="day-card" data-day="26">
+            <div class="day-title">Day 26</div>
+            <div class="day-desc">Edge Devices and IoT Gateways – Edge Computing and Connectivity</div>
+          </article>
+
+          <article class="day-card" data-day="27">
+            <div class="day-title">Day 27</div>
+            <div class="day-desc">Network Monitoring and Management Systems (NMS) – SNMP, Telemetry, APIs</div>
+          </article>
+
+          <article class="day-card" data-day="28">
+            <div class="day-title">Day 28</div>
+            <div class="day-desc">SIEM and SOAR Platforms – Security Monitoring and Automated Response</div>
+          </article>
+
+          <article class="day-card" data-day="29">
+            <div class="day-title">Day 29</div>
+            <div class="day-desc">Zero Trust Network Access (ZTNA) Devices – Modern Perimeter Security</div>
+          </article>
+
+          <article class="day-card" data-day="30">
+            <div class="day-title">Day 30</div>
+            <div class="day-desc">Future of Networking Devices – AI-driven Networks, SASE, and XDR Integration</div>
+          </article>
+        </div>
+      </section>
+    </section>
+
+    <div class="footer" role="contentinfo">
+      <div>Exact text preserved. 30 items.</div>
+      <div style="display:flex;gap:8px">
+        <button id="expandAll" class="btn">Highlight All</button>
+        <button id="clear" class="btn">Clear Highlight</button>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Search filter
+    const search = document.getElementById('search');
+    const cards = Array.from(document.querySelectorAll('.day-card'));
+    function normalize(s){ return s.trim().toLowerCase(); }
+
+    search.addEventListener('input', (e)=>{
+      const q = normalize(e.target.value);
+      if(!q){
+        cards.forEach(c=>{ c.classList.remove('match'); c.classList.remove('hidden'); });
+        return;
+      }
+      cards.forEach(c=>{
+        const text = normalize(c.textContent);
+        if(text.includes(q)){
+          c.classList.add('match');
+          c.classList.remove('hidden');
+        } else {
+          c.classList.remove('match');
+          c.classList.add('hidden');
+        }
+      });
+    });
+
+    // Print button
+    document.getElementById('printBtn').addEventListener('click', ()=> window.print());
+
+    // Expand/Highlight All and Clear
+    document.getElementById('expandAll').addEventListener('click', ()=>{
+      cards.forEach(c=> c.classList.add('match'));
+      // scroll first match into view
+      const first = document.querySelector('.day-card.match');
+      if(first) first.scrollIntoView({behavior:'smooth', block:'center'});
+    });
+    document.getElementById('clear').addEventListener('click', ()=>{
+      cards.forEach(c=>{ c.classList.remove('match'); c.classList.remove('hidden'); });
+      search.value = '';
+    });
+
+    // keyboard: "/" to focus search
+    window.addEventListener('keydown', (e)=>{
+      if(e.key === '/' && document.activeElement !== search){
+        e.preventDefault();
+        search.focus();
+        search.select();
+      }
+    });
+  </script>
+</body>
+</html>
